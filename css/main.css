@@ -1,21 +1,21 @@
 /* stylelint-disable */
 @font-face {
   font-family: "Bebas Neue Cyrillic";
-  src: url("../fonts/BebasNeueCyrillic.woff2.woff2") format("woff2");
+  src: url("../fonts/BebasNeueCyrillic.woff2") format("woff2");
   font-weight: 400;
   font-display: swap;
   font-style: normal;
 }
 @font-face {
   font-family: "Baskerville Cyrillic";
-  src: url("../fonts/BaskervilleCyrLTStd-Upright.woff2.woff2") format("woff2");
+  src: url("../fonts/BaskervilleCyrLTStd-Upright.woff2") format("woff2");
   font-weight: 400;
   font-display: swap;
   font-style: normal;
 }
 @font-face {
   font-family: "demetriss";
-  src: url("../fonts/demetriss.woff2.woff2") format("woff2");
+  src: url("../fonts/demetriss.woff2") format("woff2");
   font-weight: 400;
   font-display: swap;
   font-style: normal;

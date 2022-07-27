@@ -137,7 +137,10 @@ __webpack_require__.r(__webpack_exports__);
 
 const scroll = new locomotive_scroll__WEBPACK_IMPORTED_MODULE_1__["default"]({
   el: document.querySelector('[data-scroll-container]'),
-  smooth: true
+  smooth: true,
+  smartphone: {
+    smooth: true
+  }
 });
 new ResizeObserver(() => scroll.update()).observe(document.querySelector("[data-scroll-container]")); // const menuLink = document.getElementById('#for-people');
 // const target = document.getElementById('#for-people-link');

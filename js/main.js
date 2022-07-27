@@ -29,49 +29,79 @@ const bannerAnimation = () => {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "menuAnimation": () => (/* binding */ menuAnimation)
+/* harmony export */   "menuAnimation": () => (/* binding */ menuAnimation),
+/* harmony export */   "menuClose": () => (/* binding */ menuClose)
 /* harmony export */ });
-const burgerToCross = (line1, line2, line3) => {
+let line1 = document.querySelector('.btn__line--1');
+let line2 = document.querySelector('.btn__line--2');
+let line3 = document.querySelector('.btn__line--3');
+
+const burgerToCross = () => {
   line1.style.transform = 'translateY(220%) rotate(45deg)';
   line2.style.transform = 'translateY(-50%) scaleX(0)';
   line3.style.transform = 'translateY(-240%) rotate(-45deg)';
 };
 
-const crossToBurger = (line1, line2, line3) => {
+const crossToBurger = () => {
   line1.style.transform = '';
   line2.style.transform = '';
   line3.style.transform = '';
 };
 
-const menuAnimation = () => {
-  let menu = document.querySelector('.menu');
+const menuOpen = () => {
   let menuContent = document.querySelector('.menu__content');
   let menuItems = document.querySelectorAll('.menu__item');
-  let line1 = document.querySelector('.btn__line--1');
-  let line2 = document.querySelector('.btn__line--2');
-  let line3 = document.querySelector('.btn__line--3');
+  let menuCommunication = Array.from(document.querySelector('.menu__communication').children);
+  let menuSocials = Array.from(document.querySelector('.menu__socials').children);
+  let menuContacts = menuCommunication.concat(menuSocials);
+  burgerToCross();
+  menuContent.style.transform = 'translateX(-50%) scaleY(1)';
+  setTimeout(() => {
+    menuItems.forEach((element, index) => {
+      element.style.animationName = 'slideIn';
+      element.style.animationDelay = "".concat(index, "00ms");
+    });
+  }, 500);
+  setTimeout(() => {
+    menuContacts.forEach((element, index) => {
+      element.style.animationName = 'fadeIn';
+      element.style.animationDelay = "".concat(index, "00ms");
+    });
+  }, 1000);
+};
+
+const menuClose = () => {
+  let menuContent = document.querySelector('.menu__content');
+  let menuItems = document.querySelectorAll('.menu__item');
+  let menuCommunication = Array.from(document.querySelector('.menu__communication').children);
+  let menuSocials = Array.from(document.querySelector('.menu__socials').children);
+  let menuContacts = menuCommunication.concat(menuSocials);
+  menuItems.forEach((element, index) => {
+    element.style.animationName = 'slideOut';
+    element.style.animationDelay = "".concat(index, "00ms");
+  });
+  let delayString = menuItems[menuItems.length - 1].style.animationDelay;
+  let delayNumber = parseInt(delayString, 10);
+  setTimeout(() => {
+    crossToBurger();
+    menuContent.style.transform = '';
+  }, delayNumber + 400);
+  setTimeout(() => {
+    menuContacts.forEach((element, index) => {
+      element.style.animationName = 'fadeOut';
+      element.style.animationDelay = "".concat(index, "00ms");
+    });
+  }, 600);
+};
+const menuAnimation = () => {
+  let menu = document.querySelector('.menu');
   menu.classList.toggle('open');
 
   if (menu.classList.contains('open')) {
-    burgerToCross(line1, line2, line3);
-    menuContent.style.transform = 'translateX(-50%) scaleY(1)';
-    setTimeout(() => {
-      menuItems.forEach((element, index) => {
-        element.style.animationName = 'slideIn';
-        element.style.animationDelay = "".concat(index, "00ms");
-      });
-    }, 500);
+    burgerToCross();
+    menuOpen();
   } else {
-    menuItems.forEach((element, index) => {
-      element.style.animationName = 'slideOut';
-      element.style.animationDelay = "".concat(index, "00ms");
-    });
-    let delayString = menuItems[menuItems.length - 1].style.animationDelay;
-    let delayNumber = parseInt(delayString, 10);
-    setTimeout(() => {
-      crossToBurger(line1, line2, line3);
-      menuContent.style.transform = '';
-    }, delayNumber + 400);
+    menuClose();
   }
 };
 
@@ -100,13 +130,21 @@ const player = () => {
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var locomotive_scroll__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! locomotive-scroll */ "./node_modules/locomotive-scroll/dist/locomotive-scroll.esm.js");
+/* harmony import */ var _functions_menu_animation__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../functions/menu-animation */ "./src/js/functions/menu-animation.js");
+/* harmony import */ var locomotive_scroll__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! locomotive-scroll */ "./node_modules/locomotive-scroll/dist/locomotive-scroll.esm.js");
 
-const scroll = new locomotive_scroll__WEBPACK_IMPORTED_MODULE_0__["default"]({
+
+
+const scroll = new locomotive_scroll__WEBPACK_IMPORTED_MODULE_1__["default"]({
   el: document.querySelector('[data-scroll-container]'),
   smooth: true
 });
-new ResizeObserver(() => scroll.update()).observe(document.querySelector("[data-scroll-container]"));
+new ResizeObserver(() => scroll.update()).observe(document.querySelector("[data-scroll-container]")); // const menuLink = document.getElementById('#for-people');
+// const target = document.getElementById('#for-people-link');
+// menuLink.addEventListener('click', ()=> {
+//   scroll.scrollTo(target, {offset: -150});
+//   menuClose();
+// });
 
 /***/ }),
 

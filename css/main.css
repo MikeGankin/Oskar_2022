@@ -602,7 +602,7 @@ ol {
 .table-of-content__item a {
   display: block;
   color: #ffffff;
-  font-size: calc(0px + 20 * ((100vw - 320px) / 1600));
+  font-size: 20px;
   font-family: "Bebas Neue Cyrillic";
   text-decoration: none;
   -webkit-transition: -webkit-transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);

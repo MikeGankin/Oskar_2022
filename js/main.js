@@ -3456,14 +3456,13 @@ const handleClick = e => {
   e.target.clicked = true;
   items.forEach((element, index) => {
     if (!element.clicked) {
-      element.style.animationName = 'scaleOut';
+      // element.style.animationName = 'scaleOut';
       return false;
     }
 
     ;
     element.clicked = undefined;
-    menu.style.transform = "translateY(-".concat(index, "0%)");
-    element.style.animationName = 'scaleIn';
+    menu.style.transform = "translateY(-".concat(index, "0%)"); // element.style.animationName = 'scaleIn';
   });
   scroll.scrollTo(targetId, {
     offset: -75

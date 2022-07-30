@@ -123,34 +123,6 @@ const player = () => {
 
 /***/ }),
 
-/***/ "./src/js/vendor/locomotive-scroll.js":
-/*!********************************************!*\
-  !*** ./src/js/vendor/locomotive-scroll.js ***!
-  \********************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _functions_menu_animation__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../functions/menu-animation */ "./src/js/functions/menu-animation.js");
-/* harmony import */ var locomotive_scroll__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! locomotive-scroll */ "./node_modules/locomotive-scroll/dist/locomotive-scroll.esm.js");
-
-
-
-const scroll = new locomotive_scroll__WEBPACK_IMPORTED_MODULE_1__["default"]({
-  el: document.querySelector('[data-scroll-container]'),
-  smooth: true,
-  smartphone: {
-    smooth: true
-  }
-});
-new ResizeObserver(() => scroll.update()).observe(document.querySelector("[data-scroll-container]")); // const menuLink = document.getElementById('#for-people');
-// const target = document.getElementById('#for-people-link');
-// menuLink.addEventListener('click', ()=> {
-//   scroll.scrollTo(target, {offset: -150});
-//   menuClose();
-// });
-
-/***/ }),
-
 /***/ "./node_modules/locomotive-scroll/dist/locomotive-scroll.esm.js":
 /*!**********************************************************************!*\
   !*** ./node_modules/locomotive-scroll/dist/locomotive-scroll.esm.js ***!
@@ -3465,7 +3437,7 @@ var __webpack_exports__ = {};
   !*** ./src/js/main.js ***!
   \************************/
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _vendor_locomotive_scroll_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./vendor/locomotive-scroll.js */ "./src/js/vendor/locomotive-scroll.js");
+/* harmony import */ var locomotive_scroll__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! locomotive-scroll */ "./node_modules/locomotive-scroll/dist/locomotive-scroll.esm.js");
 /* harmony import */ var _functions_menu_animation__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./functions/menu-animation */ "./src/js/functions/menu-animation.js");
 /* harmony import */ var _functions_player__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./functions/player */ "./src/js/functions/player.js");
 /* harmony import */ var _functions_banner_animation__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./functions/banner-animation */ "./src/js/functions/banner-animation.js");
@@ -3474,15 +3446,37 @@ __webpack_require__.r(__webpack_exports__);
 
 
 const burger = document.querySelector('.menu__btn');
+let items = document.querySelectorAll('.table-of-content__item a');
+let menu = document.querySelector('.table-of-content__list');
 
-const vhMobile = () => {
-  let vh = window.innerHeight * 0.01;
-  document.documentElement.style.setProperty('--vh', "".concat(vh, "px"));
+const handleClick = e => {
+  e.preventDefault();
+  let targetId = e.target.getAttribute('href');
+  if (e.target.tagName !== 'A') return false;
+  e.target.clicked = true;
+  items.forEach((element, index) => {
+    if (!element.clicked) {
+      element.style.animationName = 'scaleOut';
+      return false;
+    }
+
+    ;
+    element.clicked = undefined;
+    menu.style.transform = "translateY(-".concat(index, "0%)");
+    element.style.animationName = 'scaleIn';
+  });
+  scroll.scrollTo(targetId, {
+    offset: -75
+  });
 };
 
-vhMobile();
+const scroll = new locomotive_scroll__WEBPACK_IMPORTED_MODULE_0__["default"]({
+  el: document.querySelector('[data-scroll-container]'),
+  smooth: true
+});
+menu.addEventListener('click', handleClick);
 burger.addEventListener('click', _functions_menu_animation__WEBPACK_IMPORTED_MODULE_1__.menuAnimation);
-window.addEventListener('load', (0,_functions_player__WEBPACK_IMPORTED_MODULE_2__.player)(), _functions_banner_animation__WEBPACK_IMPORTED_MODULE_3__.bannerAnimation);
+window.addEventListener('load', _functions_player__WEBPACK_IMPORTED_MODULE_2__.player, _functions_banner_animation__WEBPACK_IMPORTED_MODULE_3__.bannerAnimation);
 })();
 
 /******/ })()

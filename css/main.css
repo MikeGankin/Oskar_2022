@@ -170,7 +170,6 @@ ol {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  background-color: #0a0a0a;
 }
 
 .menu {
@@ -183,9 +182,11 @@ ol {
   -webkit-box-pack: justify;
   -ms-flex-pack: justify;
   justify-content: space-between;
-  width: 90%;
-  margin: 0 auto;
+  width: 100%;
+  padding: 0 5%;
   position: relative;
+  z-index: 5;
+  background-color: #0a0a0a;
 }
 
 .menu__lang-list {
@@ -206,11 +207,11 @@ ol {
   margin-right: 15px;
 }
 
-.menu__item {
+.navigation__item {
   margin-bottom: 20px;
 }
 
-.menu__item {
+.navigation__item {
   -webkit-transform: translateX(-50%);
   -ms-transform: translateX(-50%);
   transform: translateX(-50%);
@@ -220,7 +221,7 @@ ol {
   transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
-.menu__item a {
+.navigation__item a {
   text-decoration: none;
   color: #0a0a0a;
   display: block;
@@ -230,7 +231,7 @@ ol {
   position: relative;
 }
 
-.menu__item a::before {
+.navigation__item a::before {
   content: "";
   position: absolute;
   width: 100%;
@@ -251,7 +252,7 @@ ol {
   transition: transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94), -webkit-transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
-.menu__item a:hover:before {
+.navigation__item a:hover:before {
   -webkit-transform: scaleX(1);
   -ms-transform: scaleX(1);
   transform: scaleX(1);
@@ -263,7 +264,7 @@ ol {
   padding-top: 8px;
 }
 
-.menu__list {
+.navigation__list {
   font-family: "Bebas Neue Cyrillic";
   font-size: calc(25px + 45 * ((100vw - 320px) / 1600));
   display: -webkit-box;
@@ -338,15 +339,16 @@ ol {
   left: 0;
 }
 
-.menu__content {
-  padding: 5%;
-  background-color: #ffffff;
-  width: 100vw;
-  position: absolute;
-  top: 70px;
-  left: 50%;
-  height: calc(100vh - 70px);
+.navigation {
+  width: 100%;
+  height: 100vh;
+  height: var(--windowInnerHeight, 100vh);
   z-index: 3;
+  padding: calc(5% + 70px) 5% 5% 5%;
+  background-color: #ffffff;
+  position: absolute;
+  top: 0;
+  left: 50%;
   -webkit-transform-origin: top center;
   -ms-transform-origin: top center;
   transform-origin: top center;
@@ -368,7 +370,7 @@ ol {
   justify-content: space-between;
 }
 
-.menu__contacts {
+.navigation__contacts {
   position: relative;
   -ms-flex-item-align: start;
   align-self: flex-start;
@@ -401,7 +403,7 @@ ol {
   text-decoration: underline;
 }
 
-.communication__list {
+.navigation__list {
   margin: 0;
   padding: 0;
   list-style: none;
@@ -413,7 +415,7 @@ ol {
   justify-content: flex-start;
 }
 
-.communication__list svg {
+.navigation__list svg {
   width: 20px;
   height: 20px;
   -webkit-transition: fill 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
@@ -444,7 +446,7 @@ ol {
 }
 
 @media (min-width: 1439px) {
-  .communication__list svg {
+  .navigation__list svg {
     width: 40px;
     height: 40px;
   }
@@ -745,24 +747,13 @@ ol {
 .introduction {
   width: 100%;
   height: 100vh;
-  height: var(--vh, 100vh);
+  height: var(--windowInnerHeight, 100vh);
   padding: 0;
-  position: relative;
   z-index: 2;
 }
 
-.introduction__text {
-  font-size: calc(30px + 20 * (100vw - 375px) / 1545);
-  color: #ffffff;
-  margin: 0;
-  padding-left: 6px;
-  line-height: 1.5;
-  font-family: "demetriss";
-  font-weight: 400;
-}
-
 .introduction__content {
-  position: absolute;
+  position: relative;
   top: 70px;
   left: 0;
   z-index: 1;
@@ -809,6 +800,16 @@ ol {
   object-fit: cover;
   height: 100%;
   width: 100%;
+}
+
+.introduction__text {
+  font-size: calc(30px + 20 * (100vw - 375px) / 1545);
+  color: #ffffff;
+  margin: 0;
+  padding-left: 6px;
+  line-height: 1.5;
+  font-family: "demetriss";
+  font-weight: 400;
 }
 
 .next-screen {
@@ -935,17 +936,19 @@ ol {
 
 .footer {
   width: 100%;
-  height: calc(100vh - 70px);
-  height: var(--vh, 100vh);
+  height: 100vh;
+  height: var(--windowInnerHeight, 100vh);
   padding: 0;
-  position: relative;
   background-color: #ffffff;
   z-index: 2;
 }
 
 .footer__content {
+  position: relative;
+  top: 70px;
+  left: 0;
   width: 100%;
-  height: 100%;
+  height: calc(100% - 70px);
   padding: 5%;
   display: -webkit-box;
   display: -ms-flexbox;

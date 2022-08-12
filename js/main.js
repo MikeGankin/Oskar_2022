@@ -67,8 +67,8 @@ let tl = gsap__WEBPACK_IMPORTED_MODULE_1__["default"].timeline(); // Перем�
 let line1 = document.querySelector('.btn__line--1');
 let line2 = document.querySelector('.btn__line--2');
 let line3 = document.querySelector('.btn__line--3');
-let menuContent = document.querySelector('.menu__content');
-let menuItems = document.querySelector('.menu__list').children;
+let menuContent = document.querySelector('.navigation');
+let menuItems = document.querySelector('.navigation__list').children;
 let menuCommunication = document.querySelector('.menu__communication').children; // Разворот массива
 
 const createReversedArray = collection => {

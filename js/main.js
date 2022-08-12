@@ -21,6 +21,30 @@ const bannerAnimation = () => {
 
 /***/ }),
 
+/***/ "./src/js/functions/debounce.js":
+/*!**************************************!*\
+  !*** ./src/js/functions/debounce.js ***!
+  \**************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "debounce": () => (/* binding */ debounce)
+/* harmony export */ });
+const debounce = (fn, ms) => {
+  let timeout;
+  return function () {
+    const fnCall = () => {
+      fn.apply(this, arguments);
+    };
+
+    clearTimeout(timeout);
+    timeout = setTimeout(fnCall, ms);
+  };
+};
+
+/***/ }),
+
 /***/ "./src/js/functions/menu-animation.js":
 /*!********************************************!*\
   !*** ./src/js/functions/menu-animation.js ***!
@@ -29,13 +53,14 @@ const bannerAnimation = () => {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "menuAnimation": () => (/* binding */ menuAnimation),
-/* harmony export */   "menuClose": () => (/* binding */ menuClose)
+/* harmony export */   "debouncedMenuAnimation": () => (/* binding */ debouncedMenuAnimation)
 /* harmony export */ });
-/* harmony import */ var gsap__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! gsap */ "./node_modules/gsap/index.js");
+/* harmony import */ var gsap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! gsap */ "./node_modules/gsap/index.js");
+/* harmony import */ var _debounce__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./debounce */ "./src/js/functions/debounce.js");
+
  // Таймлайн
 
-let tl = gsap__WEBPACK_IMPORTED_MODULE_0__["default"].timeline(); // Переменные
+let tl = gsap__WEBPACK_IMPORTED_MODULE_1__["default"].timeline(); // Переменные
 
 let line1 = document.querySelector('.btn__line--1');
 let line2 = document.querySelector('.btn__line--2');
@@ -66,9 +91,6 @@ const crossToBurger = () => {
 
 
 const menuOpen = () => {
-  setTimeout(() => {
-    menuContent.style.display = 'flex';
-  });
   burgerToCross(); // Анимация задника меню
 
   tl.to(menuContent, {
@@ -78,7 +100,7 @@ const menuOpen = () => {
   tl.to(menuItems, {
     stagger: 0.1,
     opacity: 1,
-    x: 0
+    xPercent: 0
   }, '+=0.2'); // Анимация контактов
 
   tl.to(menuCommunication, {
@@ -91,22 +113,31 @@ const menuOpen = () => {
 const menuClose = () => {
   crossToBurger(); // Анимация контактов
 
-  tl.to(createReversedArray(menuCommunication), {
+  tl.fromTo(createReversedArray(menuCommunication), {
+    stagger: 0.1,
+    opacity: 1
+  }, {
     stagger: 0.1,
     opacity: 0
   }); // Анимация ссылок
 
-  tl.to(createReversedArray(menuItems), {
-    duration: 0.4,
+  tl.fromTo(createReversedArray(menuItems), {
+    stagger: 0.1,
+    opacity: 1,
+    xPercent: 0
+  }, {
     stagger: 0.1,
     opacity: 0,
     xPercent: -50
   }); // Анимация задника меню
 
-  tl.to(menuContent, {
+  tl.fromTo(menuContent, {
+    scaleY: 1
+  }, {
     scaleY: 0
   }, '+=0.3');
 }; // Функция анимации меню
+
 
 const menuAnimation = () => {
   let menu = document.querySelector('.menu');
@@ -118,7 +149,10 @@ const menuAnimation = () => {
   } else {
     menuClose();
   }
-};
+}; // Debouced
+
+
+const debouncedMenuAnimation = (0,_debounce__WEBPACK_IMPORTED_MODULE_0__.debounce)(menuAnimation, 200);
 
 /***/ }),
 
@@ -192,13 +226,17 @@ const expandSection = element => {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "vhMobile": () => (/* binding */ vhMobile)
+/* harmony export */   "debouncedVhMobile": () => (/* binding */ debouncedVhMobile)
 /* harmony export */ });
+/* harmony import */ var _debounce__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./debounce */ "./src/js/functions/debounce.js");
+
+
 const vhMobile = () => {
-  let vh = window.innerHeight * 0.01;
+  const vh = window.innerHeight / 100;
   document.documentElement.style.setProperty('--vh', "".concat(vh, "px"));
 };
-vhMobile();
+
+const debouncedVhMobile = (0,_debounce__WEBPACK_IMPORTED_MODULE_0__.debounce)(vhMobile, 200);
 
 /***/ }),
 
@@ -9197,7 +9235,7 @@ const scroll = new locomotive_scroll__WEBPACK_IMPORTED_MODULE_0__["default"]({
   }
 }); // Обновление скрола при изменении высоты элементов на странице
 
-new ResizeObserver(() => scroll.update()).observe(document.querySelector("[data-scroll-container]")); // Переключение навигации по скролу
+new ResizeObserver(() => scroll.update()).observe(document.querySelector("[data-scroll-container]")); // Слежка за пересечением вьюпорта
 
 const observer = new IntersectionObserver(entries => {
   entries.forEach(entry => {
@@ -9213,17 +9251,7 @@ const observer = new IntersectionObserver(entries => {
   });
 }, {
   threshold: 0.7
-});
-
-const sectionObserver = () => {
-  let arr = Array.from(sections);
-  let shifted = arr.slice(1, 11);
-  shifted.forEach(element => {
-    observer.observe(element);
-  });
-};
-
-sectionObserver(); //Функции
+}); //Функции
 // Функция переключения навигации по клику
 
 const handleClick = e => {
@@ -9254,15 +9282,26 @@ const textCollapser = e => {
       target.textContent = 'Read more';
     }
   }
-}; //События
+}; // Функция переключения навигации по скролу
 
+
+const sectionObserver = () => {
+  let arr = Array.from(sections);
+  let shifted = arr.slice(1, 11);
+  shifted.forEach(element => {
+    observer.observe(element);
+  });
+};
+
+sectionObserver(); //События
 
 menu.addEventListener('click', handleClick);
-burger.addEventListener('click', _functions_menu_animation__WEBPACK_IMPORTED_MODULE_1__.menuAnimation);
+burger.addEventListener('click', _functions_menu_animation__WEBPACK_IMPORTED_MODULE_1__.debouncedMenuAnimation);
 window.addEventListener('load', _functions_player__WEBPACK_IMPORTED_MODULE_2__.player, _functions_banner_animation__WEBPACK_IMPORTED_MODULE_3__.bannerAnimation, {
   once: true
 });
 main.addEventListener('click', textCollapser);
+window.addEventListener('resize', _functions_vh_mobile__WEBPACK_IMPORTED_MODULE_5__.debouncedVhMobile);
 })();
 
 /******/ })()

@@ -13,10 +13,10 @@
   <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
   <link rel="manifest" href="favicon/site.webmanifest">
   <link rel="mask-icon" href="favicon/safari-pinned-tab.svg" color="#5bbad5">
-  <title>Oscar Hartmann</title>
+  <link rel="preload" href="fonts/BebasNeueCyrillic.woff2" as="font">
   <link rel="stylesheet" href="css/vendor.css">
   <link rel="stylesheet" href="css/main.css">
-  <script defer src="js/main.js"></script>
+  <title>Oscar Hartmann</title>
 </head>
 
 <body class="body">
@@ -121,9 +121,9 @@
   </div>
   <div class="introduction__video-wrapper">
       <video autoplay muted loop playsinline poster="img/poster.webp" id="autoplay">
-          <source src="video/poster-small.mp4" type="video/mp4" media="min-width: 767px">
+          <source src="video/poster-small.mp4" type="video/mp4" media="max-width: 1439px">
           <source src="video/poster.mp4" type="video/mp4">
-          <source src="video/poster-small.webm" type="video/webm" media="min-width: 767px">
+          <source src="video/poster-small.webm" type="video/webm" media="max-width: 1439px">
           <source src="video/poster.webm" type="video/webm">
       </video>
   </div>
@@ -598,5 +598,6 @@
 </footer>
 
   </div>
+  <script defer src="js/main.js"></script>
 </body>
 </html>

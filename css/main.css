@@ -24,6 +24,87 @@
   box-sizing: border-box;
 }
 
+@-webkit-keyframes xBorderInAnimation {
+  from {
+    -webkit-transform: scaleX(0);
+    transform: scaleX(0);
+  }
+  to {
+    -webkit-transform: scaleX(1);
+    transform: scaleX(1);
+  }
+}
+
+@keyframes xBorderInAnimation {
+  from {
+    -webkit-transform: scaleX(0);
+    transform: scaleX(0);
+  }
+  to {
+    -webkit-transform: scaleX(1);
+    transform: scaleX(1);
+  }
+}
+@-webkit-keyframes yBorderInAnimation {
+  from {
+    -webkit-transform: scaleY(0);
+    transform: scaleY(0);
+  }
+  to {
+    -webkit-transform: scaleY(1);
+    transform: scaleY(1);
+  }
+}
+@keyframes yBorderInAnimation {
+  from {
+    -webkit-transform: scaleY(0);
+    transform: scaleY(0);
+  }
+  to {
+    -webkit-transform: scaleY(1);
+    transform: scaleY(1);
+  }
+}
+@-webkit-keyframes xBorderOutAnimation {
+  from {
+    -webkit-transform: scaleX(1);
+    transform: scaleX(1);
+  }
+  to {
+    -webkit-transform: scaleX(0);
+    transform: scaleX(0);
+  }
+}
+@keyframes xBorderOutAnimation {
+  from {
+    -webkit-transform: scaleX(1);
+    transform: scaleX(1);
+  }
+  to {
+    -webkit-transform: scaleX(0);
+    transform: scaleX(0);
+  }
+}
+@-webkit-keyframes yBorderOutAnimation {
+  from {
+    -webkit-transform: scaleY(1);
+    transform: scaleY(1);
+  }
+  to {
+    -webkit-transform: scaleY(0);
+    transform: scaleY(0);
+  }
+}
+@keyframes yBorderOutAnimation {
+  from {
+    -webkit-transform: scaleY(1);
+    transform: scaleY(1);
+  }
+  to {
+    -webkit-transform: scaleY(0);
+    transform: scaleY(0);
+  }
+}
 body {
   padding: 0;
   margin: 0;
@@ -64,10 +145,10 @@ h2 {
 }
 
 button {
-  border: 0;
   background-color: transparent;
   cursor: pointer;
   padding: 0;
+  border: none;
 }
 
 ol {
@@ -106,6 +187,90 @@ ol {
   color: #ffffff;
   position: relative;
   margin-bottom: 0;
+  padding: 10px;
+}
+.more-btn span {
+  position: absolute;
+  background-color: #ffffff;
+  -webkit-animation-duration: 400ms;
+  animation-duration: 400ms;
+  -webkit-animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+.more-btn .border-top {
+  width: 100%;
+  height: 2px;
+  -webkit-animation-name: xBorderOutAnimation;
+  animation-name: xBorderOutAnimation;
+  top: 0;
+  left: 0;
+  -webkit-transform-origin: left center;
+  -ms-transform-origin: left center;
+  transform-origin: left center;
+  -webkit-animation-delay: 700ms;
+  animation-delay: 700ms;
+}
+.more-btn .border-right {
+  width: 2px;
+  height: 100%;
+  -webkit-animation-name: yBorderOutAnimation;
+  animation-name: yBorderOutAnimation;
+  right: 0;
+  top: 0;
+  -webkit-transform-origin: top center;
+  -ms-transform-origin: top center;
+  transform-origin: top center;
+  -webkit-animation-delay: 600ms;
+  animation-delay: 600ms;
+}
+.more-btn .border-bottom {
+  width: 100%;
+  height: 2px;
+  -webkit-animation-name: xBorderOutAnimation;
+  animation-name: xBorderOutAnimation;
+  bottom: 0;
+  left: 0;
+  -webkit-transform-origin: right center;
+  -ms-transform-origin: right center;
+  transform-origin: right center;
+  -webkit-animation-delay: 500ms;
+  animation-delay: 500ms;
+}
+.more-btn .border-left {
+  width: 2px;
+  height: 100%;
+  -webkit-animation-name: yBorderOutAnimation;
+  animation-name: yBorderOutAnimation;
+  left: 0;
+  top: 0;
+  -webkit-transform-origin: bottom center;
+  -ms-transform-origin: bottom center;
+  transform-origin: bottom center;
+}
+
+.more-btn:hover .border-top {
+  -webkit-animation-name: xBorderInAnimation;
+  animation-name: xBorderInAnimation;
+}
+.more-btn:hover .border-right {
+  -webkit-animation-name: yBorderInAnimation;
+  animation-name: yBorderInAnimation;
+  -webkit-animation-delay: 500ms;
+  animation-delay: 500ms;
+}
+.more-btn:hover .border-bottom {
+  -webkit-animation-name: xBorderInAnimation;
+  animation-name: xBorderInAnimation;
+  -webkit-animation-delay: 600ms;
+  animation-delay: 600ms;
+}
+.more-btn:hover .border-left {
+  -webkit-animation-name: yBorderInAnimation;
+  animation-name: yBorderInAnimation;
+  -webkit-animation-delay: 700ms;
+  animation-delay: 700ms;
 }
 
 .limiter {
@@ -122,42 +287,6 @@ ol {
   }
   .more-btn {
     margin-bottom: 30px;
-  }
-  .more-btn:after {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 3px;
-    -webkit-transform: scaleX(0);
-    -ms-transform: scaleX(0);
-    transform: scaleX(0);
-    background-color: #ffffff;
-    -webkit-transform-origin: left center;
-    -ms-transform-origin: left center;
-    transform-origin: left center;
-    -webkit-transition: -webkit-transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    transition: -webkit-transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    -o-transition: transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    transition: transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    transition: transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94), -webkit-transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    left: 0;
-    bottom: 0;
-  }
-  .more-btn:hover:after {
-    -webkit-transform: scaleX(1);
-    -ms-transform: scaleX(1);
-    transform: scaleX(1);
-  }
-  .more-btn:active:after {
-    display: none;
-    -webkit-transform: scaleX(0);
-    -ms-transform: scaleX(0);
-    transform: scaleX(0);
-    -webkit-transition: none;
-    -o-transition: none;
-    transition: none;
   }
 }
 .header {

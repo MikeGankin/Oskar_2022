@@ -231,23 +231,17 @@ const expandSection = element => {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "debouncedVhMobile": () => (/* binding */ debouncedVhMobile)
+/* harmony export */   "vhMobile": () => (/* binding */ vhMobile)
 /* harmony export */ });
-/* harmony import */ var _debounce__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./debounce */ "./src/js/functions/debounce.js");
-
-
-const vhMobile = () => {
-  let windowInnerWidth = 0;
+const vhMobile = windowInnerWidth => {
   const currentWindowInnerWidth = window.innerWidth;
 
-  if (windowInnerWidth === 0 || currentWindowInnerWidth !== windowInnerWidth) {
+  if (currentWindowInnerWidth !== windowInnerWidth) {
     windowInnerWidth = currentWindowInnerWidth;
     const windowInnerHeight = window.innerHeight;
     document.documentElement.style.setProperty('--windowInnerHeight', "".concat(windowInnerHeight, "px"));
   }
 };
-
-const debouncedVhMobile = (0,_debounce__WEBPACK_IMPORTED_MODULE_0__.debounce)(vhMobile, 200);
 
 /***/ }),
 
@@ -10275,7 +10269,8 @@ let burger = document.querySelector('.menu__btn');
 let menu = document.querySelector('.table-of-content__list');
 let main = document.querySelector('main');
 let sections = document.querySelectorAll('section');
-let tocLinks = document.querySelectorAll('.table-of-content__link'); // Конструкторы
+let tocLinks = document.querySelectorAll('.table-of-content__link');
+let windowInnerWidth = 0; // Конструкторы
 // Управление скроллом
 
 const scroll = new locomotive_scroll__WEBPACK_IMPORTED_MODULE_0__["default"]({
@@ -10304,19 +10299,11 @@ const observer = new IntersectionObserver(entries => {
     }
   });
 }, {
-  threshold: 0.7
+  threshold: 0.6
 }); // Проверка девайса
 
-let detect = new (mobile_detect__WEBPACK_IMPORTED_MODULE_1___default())(window.navigator.userAgent);
-
-if (detect.mobile()) {
-  (0,_functions_vh_mobile__WEBPACK_IMPORTED_MODULE_6__.debouncedVhMobile)();
-  window.addEventListener('resize', _functions_vh_mobile__WEBPACK_IMPORTED_MODULE_6__.debouncedVhMobile);
-} else {
-  window.removeEventListener('resize', _functions_vh_mobile__WEBPACK_IMPORTED_MODULE_6__.debouncedVhMobile);
-} //Функции
+let detect = new (mobile_detect__WEBPACK_IMPORTED_MODULE_1___default())(window.navigator.userAgent); //Функции
 // Функция переключения навигации по клику
-
 
 const handleClick = e => {
   e.preventDefault();
@@ -10357,7 +10344,22 @@ const sectionObserver = () => {
   });
 };
 
-sectionObserver(); //События
+sectionObserver();
+
+const vhFixer = () => {
+  if (detect.mobile()) {
+    (0,_functions_vh_mobile__WEBPACK_IMPORTED_MODULE_6__.vhMobile)(windowInnerWidth);
+    window.addEventListener('resize', _functions_vh_mobile__WEBPACK_IMPORTED_MODULE_6__.vhMobile);
+  }
+
+  return () => {
+    if (detect.mobile()) {
+      window.removeEventListener('resize', _functions_vh_mobile__WEBPACK_IMPORTED_MODULE_6__.vhMobile);
+    }
+  };
+};
+
+vhFixer(); //События
 
 menu.addEventListener('click', handleClick);
 burger.addEventListener('click', _functions_menu_animation__WEBPACK_IMPORTED_MODULE_2__.debouncedMenuAnimation);

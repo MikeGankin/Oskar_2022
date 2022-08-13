@@ -105,6 +105,11 @@
     transform: scaleY(0);
   }
 }
+
+html {
+  height: -webkit-fill-available;
+}
+
 body {
   padding: 0;
   margin: 0;

@@ -10327,10 +10327,12 @@ const textCollapser = e => {
       target.parentNode.querySelector('.limiter').removeAttribute('data-collapsed');
       (0,_functions_text_limiter__WEBPACK_IMPORTED_MODULE_5__.expandSection)(target.parentNode.querySelector('.limiter'));
       target.textContent = 'Read less';
+      target.classList.remove('collapsed');
     } else {
       target.parentNode.querySelector('.limiter').setAttribute('data-collapsed', '');
       (0,_functions_text_limiter__WEBPACK_IMPORTED_MODULE_5__.collapseSection)(target.parentNode.querySelector('.limiter'));
       target.textContent = 'Read more';
+      target.classList.add('collapsed');
     }
   }
 }; // Функция переключения навигации по скролу
@@ -10351,12 +10353,6 @@ const vhFixer = () => {
     (0,_functions_vh_mobile__WEBPACK_IMPORTED_MODULE_6__.vhMobile)(windowInnerWidth);
     window.addEventListener('resize', _functions_vh_mobile__WEBPACK_IMPORTED_MODULE_6__.vhMobile);
   }
-
-  return () => {
-    if (detect.mobile()) {
-      window.removeEventListener('resize', _functions_vh_mobile__WEBPACK_IMPORTED_MODULE_6__.vhMobile);
-    }
-  };
 };
 
 vhFixer(); //События

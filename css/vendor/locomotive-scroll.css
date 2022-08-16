@@ -35,7 +35,7 @@ html.has-scroll-dragging {
   right: 0;
   top: 0;
   width: 11px;
-  height: 100%;
+  height: 100vh;
   -webkit-transform-origin: center right;
   -ms-transform-origin: center right;
   transform-origin: center right;
@@ -45,12 +45,14 @@ html.has-scroll-dragging {
   transition: transform 0.3s, opacity 0.3s;
   transition: transform 0.3s, opacity 0.3s, -webkit-transform 0.3s;
   opacity: 0;
+  background-color: rgba(206, 206, 206, 0.3137254902);
+  z-index: 8;
 }
 
 .c-scrollbar:hover {
-  -webkit-transform: scaleX(1.45);
-  -ms-transform: scaleX(1.45);
-  transform: scaleX(1.45);
+  -webkit-transform: scaleX(1.2);
+  -ms-transform: scaleX(1.2);
+  transform: scaleX(1.2);
 }
 
 .c-scrollbar:hover, .has-scroll-scrolling .c-scrollbar, .has-scroll-dragging .c-scrollbar {
@@ -77,13 +79,15 @@ html.has-scroll-dragging {
   position: absolute;
   top: 0;
   right: 0;
-  background-color: #000000;
-  opacity: 0.5;
+  background-color: #ffffff;
+  opacity: 1;
   width: 7px;
-  border-radius: 10px;
   margin: 2px;
   cursor: -webkit-grab;
   cursor: grab;
+  -webkit-transition: background-color 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  -o-transition: background-color 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition: background-color 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .has-scroll-dragging .c-scrollbar_thumb {

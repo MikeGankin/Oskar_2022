@@ -4,16 +4,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="msapplication-TileColor" content="#da532c">
-  <meta name="theme-color" content="#ffffff">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <meta name="theme-color" content="#111111">
   <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
   <link rel="manifest" href="favicon/site.webmanifest">
-  <link rel="mask-icon" href="favicon/safari-pinned-tab.svg" color="#5bbad5">
-  <link rel="preload" href="fonts/BebasNeueCyrillic.woff2" as="font">
+  <link rel="mask-icon" href="favicon/safari-pinned-tab.svg" color="#000000">
+  <meta name="msapplication-TileColor" content="#000000">
+  <meta name="theme-color" content="#ffffff">
+  <link rel="preload" href="fonts/BebasNeueCyrillic.woff2" as="font" crossorigin>
   <link rel="stylesheet" href="css/vendor.css">
   <link rel="stylesheet" href="css/main.css">
   <title>Oscar Hartmann</title>
@@ -121,10 +119,10 @@
   </div>
   <div class="introduction__video-wrapper">
       <video autoplay muted loop playsinline id="autoplay">
-          <source src="video/poster-small.mp4" type="video/mp4" media="max-width: 1439px">
-          <source src="video/poster.mp4" type="video/mp4">
-          <source src="video/poster-small.webm" type="video/webm" media="max-width: 1439px">
+          <source src="video/poster-small.webm" type="video/webm" media="min-width: 1439px">
+          <source src="video/poster-small.mp4" type="video/mp4" media="min-width: 1439px">
           <source src="video/poster.webm" type="video/webm">
+          <source src="video/poster.mp4" type="video/mp4">
       </video>
   </div>
   <span class="next-screen" href="#"></span>
@@ -139,7 +137,9 @@
         the future entrepreneur spent all his youth. At the age of seventeen, Hartmann flew
         to the United States where he completed exchange studies at Tuscarawas Valley High School
         in order to master English in which he eventually succeeded. After coming back to Germany
-        he graduated with honors from the technical gymnasium. When it came to serving in the army,
+        he graduated with honors from the technical gymnasium.
+      </p>
+      <p class="section__text">When it came to serving in the army,
         Oskar chose an alternative civilian service, with which he proceeded in Russia during the whole 2004
         at the Children’s Clinical Hospital. While in Russia, he took the opportunity to learn Russian language.
         Afterwards Oskar Hartmann entered WHU University in Koblenz and graduated with a degree in International
@@ -157,13 +157,11 @@
         <p class="section-picture__text">
             The first business that Oskar became the founder of was a sports nutrition online-store in Germany.
         </p>
-        <br>
         <p class="section-picture__text">
             In 2010 the entrepreneur created Sapato, a company specializing in the online sales of new shoe
             collections. Then the first live-TV store in Russia was created — called Shopping Live, which quickly
             became the leader in sales among its competitors.
         </p>
-        <br>
         <p class="section-picture__text">
             In 2012 Sapato was acquired by Ozon, and Oskar became a co-shareholder of Ozon.ru. At the same time
             Hartmann sold the main share of Shopping Live which allowed him to obtain capital to launch a number
@@ -172,36 +170,39 @@
         </p>
     </div>
     <div class="section-picture__img">
-      <img srcset="img\2.webp 2x" alt="Оскар сидит на кресле">
+      <picture>
+        <source srcset="img/1-big.jpg" media="(min-width: 767px)" />
+        <img src="img/1-small.jpg" />
+      </picture>
     </div>
   </div>
 </section>
 
       <section class="section-picture investments img-left" id="investments" data-scroll data-scroll-section>
-  <div class="section-picture__content section-picture__content--investments-content">
+  <div class="section-picture__content">
     <div class="section-picture__body body-right">
-        <h2 class="section-picture__heading">INVESTMENTS</h1>
-          <p class="section-picture__text">
-              Oskar Harmann is a venture capitalist and business angel. He is a co-founder and partner of Fastline Ventures, Simile Ventures Partners, and LARIX funds. Hartmann has invested in many international companies: Auto1 Group, Casacanda (fab.com), Frontier Car Group, FashionAndYou, Sukar, Nanjacart, June Homes, Flaschenpost.de.
-          </p>
-          <br>
-          <p class="section-picture__text">
-              Oskar’s venture investment portfolio (including the Hartmann family holding Hartmann Holdings) includes more than seventy companies. Five of them have already reached a capitalization of more than $ 1 billion.
-          </p>
-          <br>
-          <div class="limiter" data-collapsed>
-            <p class="section-picture__text">
-                Oskar Hartmann is widely recognized as one of the most successful business angels in the world. At the Ernst&Young international competition «Entrepreneur of the Year 2015» in Russia Oskar received the nomination «Master of Investment». Hartmann acts as an ambassador and an active participant in several annual competitions for entrepreneurs: «Breakthrough of the Year», EY-Entrepreneur of the year.
-            </p>
-            <br>
-            <p class="section-picture__text">
-                In 2018, he entered the top 1000 richest residents of Germany. Today Oskar is a member of the board of directors of Alfa-Bank, the Airplane Group — one of the largest federal developers, as well as the Moscow Exchange, the largest Russian stock exchange holding. Investments for Oskar Hartmann are mostly a way to explore the world. His goal was to invest in ideas that transform the world and people for the better by creating new values.
-            </p>
-          </div>
-      <button type="button" class="more-btn collapsed">Reed more</button>
+      <h2 class="section-picture__heading">INVESTMENTS</h1>
+      <p class="section-picture__text">
+          Oskar Harmann is a venture capitalist and business angel. He is a co-founder and partner of Fastline Ventures, Simile Ventures Partners, and LARIX funds. Hartmann has invested in many international companies: Auto1 Group, Casacanda (fab.com), Frontier Car Group, FashionAndYou, Sukar, Nanjacart, June Homes, Flaschenpost.de.
+      </p>
+      <p class="section-picture__text">
+          Oskar’s venture investment portfolio (including the Hartmann family holding Hartmann Holdings) includes more than seventy companies. Five of them have already reached a capitalization of more than $ 1 billion.
+      </p>
+      <div class="limiter" data-collapsed>
+        <p class="section-picture__text">
+            Oskar Hartmann is widely recognized as one of the most successful business angels in the world. At the Ernst&Young international competition «Entrepreneur of the Year 2015» in Russia Oskar received the nomination «Master of Investment». Hartmann acts as an ambassador and an active participant in several annual competitions for entrepreneurs: «Breakthrough of the Year», EY-Entrepreneur of the year.
+        </p>
+        <p class="section-picture__text">
+            In 2018, he entered the top 1000 richest residents of Germany. Today Oskar is a member of the board of directors of Alfa-Bank, the Airplane Group — one of the largest federal developers, as well as the Moscow Exchange, the largest Russian stock exchange holding. Investments for Oskar Hartmann are mostly a way to explore the world. His goal was to invest in ideas that transform the world and people for the better by creating new values.
+        </p>
+      </div>
+      <button type="button" class="more-btn">Reed more</button>
     </div>
     <div class="section-picture__img section-picture__img--investment">
-      <img srcset="img\1.webp 2x" alt="Оскар в костюме">
+      <picture>
+        <source srcset="img/2-big.jpg" media="(min-width: 767px)" />
+        <img src="img/2-small.jpg" />
+      </picture>
     </div>
   </div>
 </section>
@@ -219,11 +220,9 @@
             At the same time in his videos, Oskar focuses on the most important
             philosophical question: <i>«What makes a person’s life full and happy?»</i>
         </p>
-        <br>
         <p class="section-picture__text">
             Oskar is the author of a bestselling book called «Just do it! Do it easy!» with a circulation of more than 30,000 copies. This is a detailed guide for entrepreneurs and anyone who wants to learn how to manage their lives and achieve goals as successfully as possible. The author does not try to brag about his achievements and does not give a universal recipe for wealth, but helps the reader to build the right thinking that will effectively move towards the goal.
         </p>
-        <br>
         <div class="limiter" data-collapsed>
           <p class="section-picture__text">
               Oskar is also keen on sports: he is seriously engaged in indoor rowing, swimming, running, has performed parachute jumps numerous times. In 2019 one of the largest business forums «Synergy» took place in St. Petersburg, where right during the forum Hartmann broke the world record in 100-meter sprint rowing which previously belonged to Benjamin Smith. In 2021 Oskar started professional cycling. His mentor is the world champion in cycling, Honored Master of Sports Denis Dmitriev, and in 2022 the entrepreneur is already planning to go in for the title of candidate master of sports in cycling.
@@ -232,7 +231,10 @@
         <button class="more-btn">Reed more</button>
     </div>
     <div class="section-picture__img section-picture__img--hobbies">
-      <img srcset="img\3.webp 2x" alt="Оскар с книгой в руках">
+      <picture>
+        <source srcset="img/3-big.jpg" media="(min-width: 767px)" />
+        <img src="img/3-small.jpg" />
+      </picture>
     </div>
   </div>
 </section>
@@ -249,7 +251,10 @@
       him back in the day, Oskar set himself the goal of helping others
       on their path towards their goals and aspirations. Letters full of gratitude
       and feedback from people who really benefited from Oskar’s philosophy charge
-      him with energy and incentive to further development. Everything Oskar Hartmann
+      him with energy and incentive to further development.
+    </p>
+    <p class="section__text">
+      Everything Oskar Hartmann
       does is dedicated to the notion of life. He explores what
       is widely considered to create a full and happy life, and what
       hampers these processes and pulls a person down. Oskar is deeply convinced
@@ -272,7 +277,6 @@
         <p class="section-picture__text">
             Oskar Hartmann is one of the most open and highly-demanded speakers in Russia. An entrepreneur personally demonstrates an active approach to business and life, as well as the benefits of positive thinking. Oskar devotes a significant part of his time to the development of entrepreneurship around the world. His initiatives are aimed at supporting and unveiling the potential of young talented people and successful entrepreneurs. More than twenty thousand people a year take part in programs and seminars created by Oskar.
         </p>
-        <br>
         <div class="limiter" data-collapsed>
           <p class="section-picture__text">Oskar not only creates, but also oversees many communities:</p>
           <ol class="section__list">
@@ -280,12 +284,14 @@
             <li>Equium is a business community that unites the most influential entrepreneurs — people who are not only able to build a multibillion-dollar company, but also support socially transformative activities that change the life of society for the better. As its main goal, this community sees a qualitative change in macroeconomic processes and the improvement of human well-being through the development of entrepreneurship and the popularization of positive role models.</li>
             <li>In addition, Oskar Hartmann holds the position of Chairman of the Board of Trustees of the Rybakov Foundation, a non-profit organization created to support Russian entrepreneurship, as well as social non-profit projects and education.</li>
           </ol>
-          <br>
         </div>
         <button class="more-btn">Reed more</button>
     </div>
     <div class="section-picture__img section-picture__img--outreach">
-      <img src="img\4.webp" alt="">
+      <picture>
+        <source srcset="img/4-big.jpg" media="(min-width: 767px)" />
+        <img src="img/4-small.jpg" />
+      </picture>
     </div>
   </div>
 </section>
@@ -307,7 +313,6 @@
           Oskar’s philosophy charge him with energy and incentive to 
           further development.
         </p>
-        <br>
         <div class="limiter" data-collapsed>
           <p class="section-picture__text">
             Everything Oskar Hartmann does is dedicated
@@ -318,7 +323,7 @@
             and fulfilling life is Action. After all, it is Action
             that turns dreams into reality. <i>«I am a man of 
             action and man of construction. This is my main value,
-            my habit, a muscle that I train every day.»</i> —
+            my habit, a muscle that I train every day»</i> —
             says Oskar. All of Hartmann’s initiatives, organisations
             and appeals are aimed at helping people get off the couch and finally
             start acting. The cherished goal of an entrepreneur is to 
@@ -329,7 +334,10 @@
         <button class="more-btn">Reed more</button>
     </div>
     <div class="section-picture__img">
-      <img srcset="img\7.webp 2x" alt="">
+      <picture>
+        <source srcset="img/6-big.jpg" media="(min-width: 767px)" />
+        <img src="img/6-small.jpg" />
+      </picture>
     </div>
   </div>
 </section>
@@ -346,7 +354,10 @@
           into just one area: business, career, sports or family. Then the other
           aspects of life will remain «overboard». A well-off
           person will be sick and lonely, and a successful athlete will
-          be left without means of livelihood. Harmony in a 
+          be left without means of livelihood.
+        </p>
+        <p class="section-picture__text">
+          Harmony in a 
           person’s life, according to Hartmann, appears when a person
           equally develops a set of directions. The entrepreneur is 
           convinced that it is possible to be a truly active
@@ -355,10 +366,9 @@
           Oskar shows by his example that with great diligence this is quite
           feasible. «If you can effectively dose all the components of 
           your life — family, career, relationships, health and hobbies
-           — you will get the most beautiful composition of your life,
+           — you will get the most beautiful composition of your life
           » says Hartmann.
         </p>
-        <br>
         <div class="limiter" data-collapsed>
           <p class="section-picture__text">Paying great attention not only to business,
             but also to sports, creativity, and family, the entrepreneur has
@@ -380,7 +390,10 @@
         <button class="more-btn">Reed more</button>
     </div>
     <div class="section-picture__img section-picture__img--investments-img">
-      <img src="img\5.webp" alt="">
+      <picture>
+        <source srcset="img/5-big.jpg" media="(min-width: 767px)" />
+        <img src="img/5-small.jpg" />
+      </picture>
     </div>
   </div>
 </section>
@@ -389,7 +402,7 @@
   <div class="section-picture__content">
     <div class="section-picture__body body-left">
         <h2 class="section-picture__heading section-picture__heading--business">business</h1>
-        <p class="section-picture__text section-picture__text--business">
+        <p class="section-picture__text section-picture__text--underline">
           <i>You are what you do.</i>
         </p>
         <p class="section-picture__text">
@@ -402,7 +415,6 @@
           to Oskar Hartmann, is someone who can take an illusory idea and put
           it into practice.
         </p>
-        <br>
         <p class="section-picture__text">
           Oskar has founded and is developing many companies:
           Aktivo — Joint investment in real estate —
@@ -411,7 +423,6 @@
           from e-commerce and offline trading. It works according to the concept of 
           integrated omnichannel sales.
         </p>
-        <br>
         <div class="limiter" data-collapsed>
           <p class="section-picture__text">
             Home Market is a chain of convenience stores at low prices.
@@ -422,7 +433,6 @@
             a unique selection of psychologically compatible partners. Each user of 
             the site undergoes psychological testing.
           </p>
-          <br>
           <p class="section-picture__text">
             Relevant Media is an innovative online media company, a leader in the
             segment of professional content for users looking for the answers to simple questions
@@ -433,7 +443,6 @@
             hosted on the site: online diet, BMI calculator and others. All materials and articles
             presented on the portal are checked by specialists, doctors and experts.
           </p>
-          <br>
           <p class="section-picture__text">
             AutoSpot is an online service for finding the best deals from dealers of 
             new cars of all brands. The portal also has an online assessment of cars
@@ -446,7 +455,10 @@
         <button class="more-btn">Reed more</button>
     </div>
     <div class="section-picture__img">
-      <img srcset="img\8.webp 2x" alt="">
+      <picture>
+        <source srcset="img/8-big.jpg" media="(min-width: 767px)" />
+        <img src="img/8-small.jpg" />
+      </picture>
     </div>
   </div>
 </section>
@@ -458,15 +470,12 @@
         <p class="section-picture__text">
           Oskar Hartmann has been happy for many years in his one and only marriage. He is married to Tatiana Hartmann, with whom the entrepreneur has three children: two sons and a daughter. Oskar met his future wife while still a student when he came to Moscow on an experience exchange program.
         </p>
-        <br>
         <p class="section-picture__text">
           Tatiana is a loyal companion of Oskar in all spheres of life. In her statements, she is in deep solidarity with her husband and believes that the basic business and human qualities of a person are laid down in childhood. The Hartmanns attach great importance to the upbringing and education of children, so they decided not to send them to study abroad, so as not to destroy family ties and take an active part in their formation.
         </p>
-        <br>
         <p class="section-picture__text">
           Applying his own «decathlon» principle, Oskar tries not to focus all attention on work activities in order to devote as much time as possible to his family.
         </p>
-        <br>
         <div class="limiter" data-collapsed>
           <p class="section-picture__text">
             <i>
@@ -482,7 +491,7 @@
         <button class="more-btn">Reed more</button>
     </div>
     <div class="section-picture__img">
-      <img src="img\9.webp" alt="">
+      <img src="img\9.jpg" alt="">
     </div>
   </div>
 </section>
@@ -525,11 +534,11 @@
     </main>
     <footer class="footer" data-scroll data-scroll-section>
   <div class="footer__content" id="footer">
-    <h2>ПО ВОПРОСАМ СОТРУДНИЧЕСТВА И КОЛЛАБОРАЦИЙ:</h2>
-    <p>ВЛАДИМИР РОЩИН</p>
+    <h2>COOPERATION, EVENTS, COLLABORATIONS:</h2>
+    <p>VLADIMIR ROSHCHIN</p>
     <div class='footer__communication'>
       <a href="tel:+78121111111">8 (812) 123-45-67</a>
-      <a href="mailto:mail@htmlacademy.ru&body=привет?subject=вопрос">VLADIMIR@HARTMANN.HOLDINGS</a>
+      <a href="">VLADIMIR@HARTMANN.HOLDINGS</a>
     </div>
     <ul class="footer__socials socials">
       <li class='socials__item'>
@@ -598,6 +607,8 @@
 </footer>
 
   </div>
+  <button class="scroll-up">
+  </button>
   <script defer src="js/main.js"></script>
 </body>
 </html>

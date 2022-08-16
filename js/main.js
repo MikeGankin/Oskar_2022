@@ -102,7 +102,7 @@ const menuOpen = () => {
   tl.to(menuItems, {
     stagger: 0.1,
     opacity: 1,
-    xPercent: 0
+    x: 0
   }, '+=0.2'); // Анимация контактов
 
   tl.to(menuCommunication, {
@@ -126,7 +126,7 @@ const menuClose = () => {
   tl.fromTo(createReversedArray(menuItems), {
     stagger: 0.1,
     opacity: 1,
-    xPercent: 0
+    x: 0
   }, {
     stagger: 0.1,
     opacity: 0,
@@ -151,7 +151,7 @@ const menuAnimation = () => {
   } else {
     menuClose();
   }
-}; // Debouced
+}; // Debounced
 
 
 const debouncedMenuAnimation = (0,_debounce__WEBPACK_IMPORTED_MODULE_0__.debounce)(menuAnimation, 200);
@@ -184,9 +184,11 @@ const player = () => {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "collapseSection": () => (/* binding */ collapseSection),
-/* harmony export */   "expandSection": () => (/* binding */ expandSection)
+/* harmony export */   "debouncedTextCollapser": () => (/* binding */ debouncedTextCollapser)
 /* harmony export */ });
+/* harmony import */ var _debounce__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./debounce */ "./src/js/functions/debounce.js");
+
+
 const collapseSection = element => {
   // получаем высоту внутреннего содержимого элемента, независимо от его фактического размера
   let sectionHeight = element.scrollHeight; // временно отключаем CSS transitions
@@ -197,7 +199,8 @@ const collapseSection = element => {
   // неменялось значение 'auto'
 
   requestAnimationFrame(() => {
-    element.style.height = sectionHeight + 'px';
+    // element.style.height = section0Height + 'px';
+    element.style.height = 'fit-content';
     element.style.transition = elementTransition; // на следующем кадре (как только предыдущий стиль применится),
     // ставим значение transition to height: 0
 
@@ -206,11 +209,13 @@ const collapseSection = element => {
     });
   });
 };
+
 const expandSection = element => {
   // get the height of the element's inner content, regardless of its actual size
   let sectionHeight = element.scrollHeight; // have the element transition to the height of its inner content
+  // element.style.height = sectionHeight + 'px';
 
-  element.style.height = sectionHeight + 'px'; // when the next css transition finishes (which should be the one we just triggered)
+  element.style.height = 'fit-content'; // when the next css transition finishes (which should be the one we just triggered)
 
   const heightNull = () => {
     element.style.height = null;
@@ -219,6 +224,24 @@ const expandSection = element => {
   element.addEventListener('transitionend', heightNull);
   element.removeEventListener('transitionend', heightNull);
 };
+
+const textCollapser = e => {
+  let target = e.target;
+  if (!target.tagName === 'button') return;
+
+  if (target.parentElement.querySelector('.limiter').hasAttribute('data-collapsed')) {
+    target.parentNode.querySelector('.limiter').removeAttribute('data-collapsed');
+    expandSection(target.parentNode.querySelector('.limiter'));
+    target.textContent = 'Read less';
+  } else {
+    target.parentNode.querySelector('.limiter').setAttribute('data-collapsed', '');
+    collapseSection(target.parentNode.querySelector('.limiter'));
+    target.textContent = 'Read more';
+  }
+}; // Debounced
+
+
+const debouncedTextCollapser = (0,_debounce__WEBPACK_IMPORTED_MODULE_0__.debounce)(textCollapser, 200);
 
 /***/ }),
 
@@ -10262,14 +10285,15 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
  //Переменные
 
-let burger = document.querySelector('.menu__btn');
-let menu = document.querySelector('.table-of-content__list');
-let main = document.querySelector('main');
-let sections = document.querySelectorAll('section');
-let tocLinks = document.querySelectorAll('.table-of-content__link');
+const burger = document.querySelector('.menu__btn');
+const menu = document.querySelector('.table-of-content__list');
+const main = document.querySelector('main');
+const sections = document.querySelectorAll('section');
+const tocLinks = document.querySelectorAll('.table-of-content__link');
+const scrollUp = document.querySelector('.scroll-up');
+const footer = document.querySelector('.footer');
 let windowInnerWidth = 0; // Конструкторы
 // Управление скроллом
 
@@ -10284,9 +10308,9 @@ const scroll = new locomotive_scroll__WEBPACK_IMPORTED_MODULE_0__["default"]({
   }
 }); // Обновление скрола при изменении высоты элементов на странице
 
-new ResizeObserver(() => scroll.update()).observe(document.querySelector("[data-scroll-container]")); // Слежка за пересечением вьюпорта
+new ResizeObserver(() => scroll.update()).observe(document.querySelector("[data-scroll-container]")); // Слежка за пересечением вьюпорта для навигации
 
-const observer = new IntersectionObserver(entries => {
+const navObserver = new IntersectionObserver(entries => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
       tocLinks.forEach(link => {
@@ -10300,7 +10324,24 @@ const observer = new IntersectionObserver(entries => {
   });
 }, {
   threshold: 0.6
-}); // Проверка девайса
+}); // Слежка за пересечением вьюпорта для кнопки вверх
+
+const scrollUpObserver = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      // Show button
+      scrollUp.classList.add('scroll-up--active');
+      document.querySelector('.c-scrollbar_thumb').style.backgroundColor = '#000000';
+    } else {
+      // Hide button
+      scrollUp.classList.remove('scroll-up--active');
+      document.querySelector('.c-scrollbar_thumb').style.backgroundColor = '';
+    }
+  });
+}, {
+  threshold: 0.2
+});
+scrollUpObserver.observe(footer); // Проверка девайса
 
 let detect = new (mobile_detect__WEBPACK_IMPORTED_MODULE_1___default())(window.navigator.userAgent); //Функции
 // Функция переключения навигации по клику
@@ -10316,25 +10357,6 @@ const handleClick = e => {
   scroll.scrollTo(targetId, {
     offset: -25
   });
-}; // Функция схлопывания абзацев
-
-
-const textCollapser = e => {
-  let target = e.target;
-
-  if (target.tagName === 'BUTTON') {
-    if (target.parentNode.querySelector('.limiter').hasAttribute('data-collapsed')) {
-      target.parentNode.querySelector('.limiter').removeAttribute('data-collapsed');
-      (0,_functions_text_limiter__WEBPACK_IMPORTED_MODULE_5__.expandSection)(target.parentNode.querySelector('.limiter'));
-      target.textContent = 'Read less';
-      target.classList.remove('collapsed');
-    } else {
-      target.parentNode.querySelector('.limiter').setAttribute('data-collapsed', '');
-      (0,_functions_text_limiter__WEBPACK_IMPORTED_MODULE_5__.collapseSection)(target.parentNode.querySelector('.limiter'));
-      target.textContent = 'Read more';
-      target.classList.add('collapsed');
-    }
-  }
 }; // Функция переключения навигации по скролу
 
 
@@ -10342,11 +10364,11 @@ const sectionObserver = () => {
   let arr = Array.from(sections);
   let shifted = arr.slice(1, 11);
   shifted.forEach(element => {
-    observer.observe(element);
+    navObserver.observe(element);
   });
 };
 
-sectionObserver();
+sectionObserver(); // Функция полноэкранного хака
 
 const vhFixer = () => {
   if (detect.mobile()) {
@@ -10355,14 +10377,19 @@ const vhFixer = () => {
   }
 };
 
-vhFixer(); //События
+vhFixer(); // Функция скрола страницы вверх
+
+const scrollUpper = () => {
+  scroll.scrollTo('top');
+  scrollUp.classList.remove('scroll-up--active');
+}; //События
+
 
 menu.addEventListener('click', handleClick);
 burger.addEventListener('click', _functions_menu_animation__WEBPACK_IMPORTED_MODULE_2__.debouncedMenuAnimation);
-window.addEventListener('load', _functions_player__WEBPACK_IMPORTED_MODULE_3__.player, _functions_banner_animation__WEBPACK_IMPORTED_MODULE_4__.bannerAnimation, {
-  once: true
-});
-main.addEventListener('click', textCollapser);
+window.addEventListener('load', _functions_player__WEBPACK_IMPORTED_MODULE_3__.player, _functions_banner_animation__WEBPACK_IMPORTED_MODULE_4__.bannerAnimation);
+main.addEventListener('click', _functions_text_limiter__WEBPACK_IMPORTED_MODULE_5__.debouncedTextCollapser);
+scrollUp.addEventListener('click', scrollUpper);
 })();
 
 /******/ })()

@@ -68,7 +68,8 @@ const debounce = (fn, ms) => {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "debouncedLangMenuAnimation": () => (/* binding */ debouncedLangMenuAnimation),
-/* harmony export */   "debouncedMenuAnimation": () => (/* binding */ debouncedMenuAnimation)
+/* harmony export */   "debouncedMenuAnimation": () => (/* binding */ debouncedMenuAnimation),
+/* harmony export */   "langToggleScrollClose": () => (/* binding */ langToggleScrollClose)
 /* harmony export */ });
 /* harmony import */ var gsap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! gsap */ "./node_modules/gsap/index.js");
 /* harmony import */ var _debounce__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./debounce */ "./src/js/functions/debounce.js");
@@ -159,23 +160,22 @@ const menuClose = () => {
 
 const menuAnimation = () => {
   let menu = document.querySelector('.menu');
-  let siteWrapper = document.querySelector('.site-wrapper');
   menu.classList.toggle('open');
 
   if (menu.classList.contains('open')) {
     burgerToCross();
     menuOpen();
-    siteWrapper.classList.add('no-scroll');
+    document.body.classList.add('no-scroll');
   } else {
     menuClose();
-    siteWrapper.classList.remove('no-scroll');
+    document.body.classList.remove('no-scroll');
   }
 }; // Функция открытия меню языков
 
 
 const langToggleOpen = () => {
   langTl.to(menuLangList, {
-    scaleY: 1
+    scaleX: 1
   });
   langTl.to(createReversedArray(languages), {
     stagger: 0.1,
@@ -193,11 +193,11 @@ const langToggleClose = () => {
     opacity: 0
   });
   langTl.fromTo(menuLangList, {
-    scaleY: 1
+    scaleX: 1
   }, {
-    scaleY: 0
+    scaleX: 0
   }, '+=0.1');
-}; // Функция анимации меню
+}; // Функция анимации меню языков
 
 
 const langMenuAnimation = () => {
@@ -208,8 +208,18 @@ const langMenuAnimation = () => {
   } else {
     langToggleClose();
   }
-}; // Debounced
+}; // Функция закрытия меню языков при скроле
 
+
+const langToggleScrollClose = () => {
+  let prevScrollpos = window.pageYOffset;
+
+  if (prevScrollpos > 100 && menuLangList.classList.contains('open')) {
+    langToggleClose();
+    menuLangList.classList.remove('open');
+    window.removeEventListener('scroll', langToggleScrollClose);
+  }
+}; // Debounced
 
 const debouncedMenuAnimation = (0,_debounce__WEBPACK_IMPORTED_MODULE_0__.debounce)(menuAnimation, 200);
 const debouncedLangMenuAnimation = (0,_debounce__WEBPACK_IMPORTED_MODULE_0__.debounce)(langMenuAnimation, 200);
@@ -9618,16 +9628,14 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
  //Переменные
 
 const burger = document.querySelector('.menu__btn');
 const scrollUp = document.querySelector('.scroll-up');
 const footer = document.querySelector('.footer');
 const langToggler = document.querySelector('.menu__lang-btn');
-const langIndicator = langToggler.querySelector('span');
-const iPad = !!window.navigator.userAgent.match(/iPad/i);
-const iPhone = !!window.navigator.userAgent.match(/iPhone/i);
-const iOS = iPad || iPhone; // Конструкторы
+const langIndicator = langToggler.querySelector('span'); // Конструкторы
 // Управление скроллом
 
 const scroll = new locomotive_scroll__WEBPACK_IMPORTED_MODULE_0__["default"]({
@@ -9702,7 +9710,9 @@ burger.addEventListener('click', _functions_menu_animation__WEBPACK_IMPORTED_MOD
 langToggler.addEventListener('click', _functions_menu_animation__WEBPACK_IMPORTED_MODULE_1__.debouncedLangMenuAnimation);
 scrollUp.addEventListener('click', scrollUpper);
 window.addEventListener('load', _functions_banner_animation__WEBPACK_IMPORTED_MODULE_2__.bannerAnimation);
+window.addEventListener('scroll', _functions_menu_animation__WEBPACK_IMPORTED_MODULE_1__.langToggleScrollClose);
 })();
 
 /******/ })()
 ;
+//# sourceMappingURL=main.js.map

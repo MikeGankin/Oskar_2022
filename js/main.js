@@ -69,21 +69,25 @@ const debounce = (fn, ms) => {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "debouncedLangMenuAnimation": () => (/* binding */ debouncedLangMenuAnimation),
 /* harmony export */   "debouncedMenuAnimation": () => (/* binding */ debouncedMenuAnimation)
 /* harmony export */ });
 /* harmony import */ var gsap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! gsap */ "./node_modules/gsap/index.js");
 /* harmony import */ var _debounce__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./debounce */ "./src/js/functions/debounce.js");
 
- // Таймлайн
+ // Таймлайны
 
-let tl = gsap__WEBPACK_IMPORTED_MODULE_1__["default"].timeline(); // Переменные
+let menuTl = gsap__WEBPACK_IMPORTED_MODULE_1__["default"].timeline();
+let langTl = gsap__WEBPACK_IMPORTED_MODULE_1__["default"].timeline(); // Переменные
 
 let line1 = document.querySelector('.btn__line--1');
 let line2 = document.querySelector('.btn__line--2');
 let line3 = document.querySelector('.btn__line--3');
 let menuContent = document.querySelector('.navigation');
 let menuItems = document.querySelector('.navigation__list').children;
-let menuCommunication = document.querySelector('.menu__communication').children; // Разворот массива
+let menuCommunication = document.querySelector('.menu__communication').children;
+let menuLangList = document.querySelector('.menu__lang-list');
+let languages = document.querySelectorAll('.menu__lang-item'); // Разворот массива
 
 const createReversedArray = collection => {
   let newArray = Array.from(collection);
@@ -109,17 +113,17 @@ const crossToBurger = () => {
 const menuOpen = () => {
   burgerToCross(); // Анимация задника меню
 
-  tl.to(menuContent, {
+  menuTl.to(menuContent, {
     scaleY: 1
   }); // Анимация ссылок
 
-  tl.to(menuItems, {
+  menuTl.to(menuItems, {
     stagger: 0.1,
     opacity: 1,
     x: 0
   }, '+=0.1'); // Анимация контактов
 
-  tl.to(menuCommunication, {
+  menuTl.to(menuCommunication, {
     stagger: 0.1,
     opacity: 1
   });
@@ -129,7 +133,7 @@ const menuOpen = () => {
 const menuClose = () => {
   crossToBurger(); // Анимация контактов
 
-  tl.fromTo(createReversedArray(menuCommunication), {
+  menuTl.fromTo(createReversedArray(menuCommunication), {
     stagger: 0.1,
     opacity: 1
   }, {
@@ -137,17 +141,17 @@ const menuClose = () => {
     opacity: 0
   }); // Анимация ссылок
 
-  tl.fromTo(createReversedArray(menuItems), {
+  menuTl.fromTo(createReversedArray(menuItems), {
     stagger: 0.1,
     opacity: 1,
     x: 0
   }, {
     stagger: 0.1,
     opacity: 0,
-    x: -200
+    x: 100
   }); // Анимация задника меню
 
-  tl.fromTo(menuContent, {
+  menuTl.fromTo(menuContent, {
     scaleY: 1
   }, {
     scaleY: 0
@@ -162,36 +166,54 @@ const menuAnimation = () => {
   if (menu.classList.contains('open')) {
     burgerToCross();
     menuOpen();
+    document.body.classList.add('no-scroll');
   } else {
     menuClose();
+    document.body.classList.remove('no-scroll');
+  }
+}; // Функция открытия меню языков
+
+
+const langToggleOpen = () => {
+  langTl.to(menuLangList, {
+    scaleY: 1
+  });
+  langTl.to(createReversedArray(languages), {
+    stagger: 0.1,
+    opacity: 1
+  }, '+=0.1');
+}; // Функция закрытия меню языков
+
+
+const langToggleClose = () => {
+  langTl.fromTo(languages, {
+    stagger: 0.1,
+    opacity: 1
+  }, {
+    stagger: 0.1,
+    opacity: 0
+  });
+  langTl.fromTo(menuLangList, {
+    scaleY: 1
+  }, {
+    scaleY: 0
+  }, '+=0.1');
+}; // Функция анимации меню
+
+
+const langMenuAnimation = () => {
+  menuLangList.classList.toggle('open');
+
+  if (menuLangList.classList.contains('open')) {
+    langToggleOpen();
+  } else {
+    langToggleClose();
   }
 }; // Debounced
 
 
 const debouncedMenuAnimation = (0,_debounce__WEBPACK_IMPORTED_MODULE_0__.debounce)(menuAnimation, 200);
-
-/***/ }),
-
-/***/ "./src/js/functions/vh-mobile.js":
-/*!***************************************!*\
-  !*** ./src/js/functions/vh-mobile.js ***!
-  \***************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "vhMobile": () => (/* binding */ vhMobile)
-/* harmony export */ });
-const vhMobile = windowInnerWidth => {
-  const currentWindowInnerWidth = window.innerWidth;
-
-  if (currentWindowInnerWidth !== windowInnerWidth) {
-    windowInnerWidth = currentWindowInnerWidth;
-    const windowInnerHeight = window.innerHeight;
-    document.documentElement.style.setProperty('--windowInnerHeight', "".concat(windowInnerHeight, "px"));
-  }
-};
+const debouncedLangMenuAnimation = (0,_debounce__WEBPACK_IMPORTED_MODULE_0__.debounce)(langMenuAnimation, 200);
 
 /***/ }),
 
@@ -23211,7 +23233,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var swiper__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! swiper */ "./node_modules/swiper/swiper.esm.js");
 /* harmony import */ var _functions_menu_animation__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./functions/menu-animation */ "./src/js/functions/menu-animation.js");
 /* harmony import */ var _functions_banner_animation__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./functions/banner-animation */ "./src/js/functions/banner-animation.js");
-/* harmony import */ var _functions_vh_mobile__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./functions/vh-mobile */ "./src/js/functions/vh-mobile.js");
 
 
 
@@ -23222,7 +23243,8 @@ __webpack_require__.r(__webpack_exports__);
 const burger = document.querySelector('.menu__btn');
 const scrollUp = document.querySelector('.scroll-up');
 const footer = document.querySelector('.footer');
-let windowInnerWidth = 0; // Конструкторы
+const langToggler = document.querySelector('.menu__lang-btn');
+const langIndicator = langToggler.querySelector('span'); // Конструкторы
 // Управление скроллом
 
 const scroll = new locomotive_scroll__WEBPACK_IMPORTED_MODULE_0__["default"]({
@@ -23274,15 +23296,24 @@ scrollUpObserver.observe(footer); // Проверка девайса
 
 let detect = new (mobile_detect__WEBPACK_IMPORTED_MODULE_1___default())(window.navigator.userAgent); //Функции
 // Функция полноэкранного хака
-
-const vhFixer = () => {
-  if (detect.mobile()) {
-    (0,_functions_vh_mobile__WEBPACK_IMPORTED_MODULE_5__.vhMobile)(windowInnerWidth);
-    window.addEventListener('resize', _functions_vh_mobile__WEBPACK_IMPORTED_MODULE_5__.vhMobile);
-  }
-};
-
-vhFixer(); // Функция скрола страницы вверх
+// let windowInnerWidth = 0;
+// const handleResize = () => {
+//   const currentWindowInnerWidth = window.innerWidth;
+//   if (currentWindowInnerWidth !== windowInnerWidth) {
+//     windowInnerWidth = currentWindowInnerWidth;
+//     const windowInnerHeight = window.innerHeight;
+//     document.documentElement.style.setProperty('--windowInnerHeight', `${windowInnerHeight}px`);
+//   }
+// }
+// const vhFixer = () => {
+//   if (detect.mobile()) {
+//     handleResize();
+//     window.addEventListener('resize', handleResize);
+//     return window.removeEventListener('resize', handleResize);
+//   }
+// }
+// vhFixer();
+// Функция скрола страницы вверх
 
 const scrollUpper = () => {
   scrollUp.classList.remove('scroll-up--active');
@@ -23298,11 +23329,26 @@ const scrollposition = () => {
   window.scroll(...cords.map(cord => localStorage[cord]));
 };
 
-scrollposition();
-let posTop = window.pageYOffset;
-console.log(posTop); //События
+scrollposition(); // Функция индикации текущего языка
+
+const langIndicatorToggler = () => {
+  if (document.documentElement.lang === 'ru') {
+    langIndicator.textContent = 'RU';
+  }
+
+  if (document.documentElement.lang === 'en') {
+    langIndicator.textContent = 'EN';
+  }
+
+  if (document.documentElement.lang === 'de') {
+    langIndicator.textContent = 'DE';
+  }
+};
+
+langIndicatorToggler(); //События
 
 burger.addEventListener('click', _functions_menu_animation__WEBPACK_IMPORTED_MODULE_3__.debouncedMenuAnimation);
+langToggler.addEventListener('click', _functions_menu_animation__WEBPACK_IMPORTED_MODULE_3__.debouncedLangMenuAnimation);
 scrollUp.addEventListener('click', scrollUpper);
 window.addEventListener('load', _functions_banner_animation__WEBPACK_IMPORTED_MODULE_4__.bannerAnimation);
 })();

@@ -79,14 +79,15 @@ __webpack_require__.r(__webpack_exports__);
 let menuTl = gsap__WEBPACK_IMPORTED_MODULE_1__["default"].timeline();
 let langTl = gsap__WEBPACK_IMPORTED_MODULE_1__["default"].timeline(); // Переменные
 
-let line1 = document.querySelector('.btn__line--1');
-let line2 = document.querySelector('.btn__line--2');
-let line3 = document.querySelector('.btn__line--3');
-let menuContent = document.querySelector('.navigation');
-let menuItems = document.querySelector('.navigation__list').children;
-let menuCommunication = document.querySelector('.menu__communication').children;
-let menuLangList = document.querySelector('.menu__lang-list');
-let languages = document.querySelectorAll('.menu__lang-item'); // Разворот массива
+const line1 = document.querySelector('.btn__line--1');
+const line2 = document.querySelector('.btn__line--2');
+const line3 = document.querySelector('.btn__line--3');
+const menuContent = document.querySelector('.navigation');
+const menuItems = document.querySelector('.navigation__list').children;
+const menuCommunication = document.querySelector('.menu__communication').children;
+const menuLangList = document.querySelector('.menu__lang-list');
+const languages = document.querySelectorAll('.menu__lang-item');
+const mobileDeviceDetector = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent); // Разворот массива
 
 const createReversedArray = collection => {
   let newArray = Array.from(collection);
@@ -158,7 +159,7 @@ const menuClose = () => {
 }; // Функция отключения скрола
 
 
-const diableScroll = () => {
+const disableScroll = () => {
   let pagePosition = window.screenY;
   document.body.classList.add('no-scroll');
   document.body.dataset.position = pagePosition;
@@ -167,7 +168,7 @@ const diableScroll = () => {
 
 
 const enableScroll = () => {
-  let pagePosition = parseInt(body.dataset.position, 10);
+  let pagePosition = parseInt(document.body.dataset.position, 10);
   document.body.style.top = 'auto';
   document.body.classList.remove('no-scroll');
   window.scroll({
@@ -182,19 +183,24 @@ const menuAnimation = () => {
   let menu = document.querySelector('.menu');
   menu.classList.toggle('open');
 
+  if (menuLangList.classList.contains('open')) {
+    langToggleClose();
+    menuLangList.classList.remove('open');
+  }
+
   if (menu.classList.contains('open')) {
     burgerToCross();
     menuOpen();
 
-    if (menuLangList.classList.contains('open')) {
-      langToggleClose();
-      menuLangList.classList.remove('open');
+    if (mobileDeviceDetector) {
+      disableScroll();
     }
-
-    diableScroll();
   } else {
     menuClose();
-    enableScroll();
+
+    if (mobileDeviceDetector) {
+      enableScroll();
+    }
   }
 }; // Функция открытия меню языков на мобильных девайсах
 

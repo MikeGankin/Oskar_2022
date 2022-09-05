@@ -87,7 +87,7 @@ button {
   overflow: hidden;
 }
 
-.site-link a {
+.site-link {
   display: block;
   width: -webkit-fit-content;
   width: -moz-fit-content;
@@ -96,7 +96,7 @@ button {
   font-size: calc(16px + 7 * ((100vw - 320px) / 1600));
   font-weight: 400;
   color: #0a0a0a;
-  margin: 5% auto 5% auto;
+  margin: 5% auto 5% 0;
   text-decoration: none;
   padding: 10px 20px;
   border: 2px solid #0a0a0a;
@@ -202,6 +202,11 @@ button {
   cursor: none;
 }
 
+.centered {
+  margin-left: auto;
+  margin-right: auto;
+}
+
 @media (min-width: 768px) {
   .scroll-up {
     display: block;
@@ -289,7 +294,7 @@ button {
   .scroll-up:hover svg {
     fill: url("#gradient");
   }
-  .site-link a:hover {
+  .site-link:hover {
     background: -webkit-gradient(linear, left top, right top, from(#ff1c42), color-stop(20%, #ff4534), color-stop(40%, #ff7622), to(#ffb80a));
     background: -o-linear-gradient(left, #ff1c42 0%, #ff4534 20%, #ff7622 40%, #ffb80a 100%);
     background: linear-gradient(90deg, #ff1c42 0%, #ff4534 20%, #ff7622 40%, #ffb80a 100%);
@@ -351,6 +356,30 @@ button {
     opacity: 0;
   }
   to {
+    opacity: 1;
+  }
+}
+@-webkit-keyframes scaleIn {
+  from {
+    -webkit-transform: scaleX(0);
+    transform: scaleX(0);
+    opacity: 0;
+  }
+  to {
+    -webkit-transform: scaleX(1);
+    transform: scaleX(1);
+    opacity: 1;
+  }
+}
+@keyframes scaleIn {
+  from {
+    -webkit-transform: scaleX(0);
+    transform: scaleX(0);
+    opacity: 0;
+  }
+  to {
+    -webkit-transform: scaleX(1);
+    transform: scaleX(1);
     opacity: 1;
   }
 }
@@ -433,6 +462,7 @@ button {
   -ms-transform: scaleX(0);
   transform: scaleX(0);
   cursor: none;
+  opacity: 0;
 }
 
 .menu__lang-item {
@@ -989,18 +1019,22 @@ button {
     transform: translateY(-1px);
   }
   .menu__lang-btn:hover + .menu__lang-list {
-    -webkit-transform: scaleX(1);
-    -ms-transform: scaleX(1);
-    transform: scaleX(1);
-    opacity: 1;
+    -webkit-animation-name: scaleIn;
+    animation-name: scaleIn;
+    -webkit-animation-duration: 0.2s;
+    animation-duration: 0.2s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+    -webkit-animation-delay: 100ms;
+    animation-delay: 100ms;
   }
   .menu__lang-btn:hover + .menu__lang-list .menu__lang-item:nth-child(1) {
     -webkit-animation-name: fadeIn-1;
     animation-name: fadeIn-1;
     -webkit-animation-duration: 0.2s;
     animation-duration: 0.2s;
-    -webkit-animation-fill-mode: forwards;
-    animation-fill-mode: forwards;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
     -webkit-animation-delay: 200ms;
     animation-delay: 200ms;
   }
@@ -1009,8 +1043,8 @@ button {
     animation-name: fadeIn-2;
     -webkit-animation-duration: 0.2s;
     animation-duration: 0.2s;
-    -webkit-animation-fill-mode: forwards;
-    animation-fill-mode: forwards;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
     -webkit-animation-delay: 300ms;
     animation-delay: 300ms;
   }
@@ -1019,8 +1053,8 @@ button {
     animation-name: fadeIn-3;
     -webkit-animation-duration: 0.2s;
     animation-duration: 0.2s;
-    -webkit-animation-fill-mode: forwards;
-    animation-fill-mode: forwards;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
     -webkit-animation-delay: 400ms;
     animation-delay: 400ms;
   }
@@ -2014,10 +2048,7 @@ button {
   height: 400px;
 }
 
-.lead-article__img a {
-  display: block;
-  width: 100%;
-  height: 100%;
+.lead-article__img img {
   -webkit-transition: -webkit-transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   transition: -webkit-transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   -o-transition: transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
@@ -2025,10 +2056,11 @@ button {
   transition: transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94), -webkit-transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
-.lead-article__img a:hover {
-  -webkit-transform: scale(1.02);
-  -ms-transform: scale(1.02);
-  transform: scale(1.02);
+.lead-article__img a {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
 }
 
 .entry__title {
@@ -2229,6 +2261,11 @@ button {
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
+  }
+  .lead-article__img img:hover {
+    -webkit-transform: scale(1.02);
+    -ms-transform: scale(1.02);
+    transform: scale(1.02);
   }
 }
 .article-nav {

@@ -191,16 +191,10 @@ const menuAnimation = () => {
   if (menu.classList.contains('open')) {
     burgerToCross();
     menuOpen();
-
-    if (mobileDeviceDetector) {
-      disableScroll();
-    }
+    disableScroll();
   } else {
     menuClose();
-
-    if (mobileDeviceDetector) {
-      enableScroll();
-    }
+    enableScroll();
   }
 }; // Функция открытия меню языков на мобильных девайсах
 

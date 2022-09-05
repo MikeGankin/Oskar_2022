@@ -155,6 +155,26 @@ const menuClose = () => {
   }, {
     scaleY: 0
   }, '+=0.2');
+}; // Функция отключения скрола
+
+
+const diableScroll = () => {
+  let pagePosition = window.screenY;
+  document.body.classList.add('no-scroll');
+  document.body.dataset.position = pagePosition;
+  document.body.style.top = -pagePosition + 'px';
+}; // Функция включения скрола
+
+
+const enableScroll = () => {
+  let pagePosition = parseInt(body.dataset.position, 10);
+  document.body.style.top = 'auto';
+  document.body.classList.remove('no-scroll');
+  window.scroll({
+    top: pagePosition,
+    left: 0
+  });
+  document.body.removeAttribute('data-position');
 }; // Функция анимации меню
 
 
@@ -171,10 +191,10 @@ const menuAnimation = () => {
       menuLangList.classList.remove('open');
     }
 
-    document.body.classList.add('no-scroll');
+    diableScroll();
   } else {
     menuClose();
-    document.body.classList.remove('no-scroll');
+    enableScroll();
   }
 }; // Функция открытия меню языков на мобильных девайсах
 
@@ -9720,7 +9740,7 @@ langToggler.addEventListener('click', () => {
   }
 });
 scrollUp.addEventListener('click', scrollUpper);
-window.addEventListener('load', _functions_banner_animation__WEBPACK_IMPORTED_MODULE_2__.bannerAnimation);
+window.addEventListener('DOMContentLoaded', _functions_banner_animation__WEBPACK_IMPORTED_MODULE_2__.bannerAnimation);
 window.addEventListener('scroll', _functions_menu_animation__WEBPACK_IMPORTED_MODULE_1__.langToggleScrollClose);
 })();
 

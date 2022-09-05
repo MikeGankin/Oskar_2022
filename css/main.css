@@ -38,6 +38,7 @@ body {
   -webkit-hyphens: auto;
   hyphens: auto;
   hyphenate-limit-last: always;
+  position: relative;
 }
 
 img {
@@ -187,9 +188,13 @@ button {
 }
 
 .no-scroll {
-  height: 100%;
-  width: 100%;
+  position: relative;
   overflow: hidden;
+  height: 100vh;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
 }
 
 .hidden {
@@ -1461,9 +1466,6 @@ button {
     -ms-flex-direction: column;
     flex-direction: column;
   }
-  .current .post__img {
-    min-height: 330px;
-  }
 }
 @media (min-width: 768px) {
   .posts {
@@ -1537,6 +1539,15 @@ button {
   }
   .h520 {
     min-height: 520px;
+  }
+}
+@media (min-width: 1720px) {
+  .chapter__img {
+    width: 1440px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 30px;
+    padding-right: 30px;
   }
 }
 @media (any-hover: hover) {
@@ -1698,8 +1709,6 @@ button {
 
 .introduction__content {
   position: relative;
-  top: 0;
-  left: 0;
   z-index: 1;
   width: 100%;
   height: calc(100% - 70px);
@@ -1720,34 +1729,14 @@ button {
   overflow: visible;
 }
 
-.introduction__video-wrapper {
-  width: 100%;
-  height: inherit;
+.introduction__video {
   position: absolute;
-  overflow: hidden;
-  text-align: center;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  justify-content: center;
   top: 0;
   left: 0;
-  background-image: url("../img/poster.jpg");
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center center;
-}
-
-.introduction video {
+  width: 100%;
+  height: 100%;
   -o-object-fit: cover;
   object-fit: cover;
-  height: 100%;
-  width: 100%;
 }
 
 .introduction__banner {

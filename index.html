@@ -15,6 +15,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preload" href="fonts/Eastman-Bold.woff2" as="font" crossorigin>
   <link rel="preload" href="fonts/Eastman-Regular.woff2" as="font" crossorigin>
+  <link rel="preload" href="fonts/BebasNeueCyrillic.woff2" as="font" crossorigin>
   <link rel="stylesheet" href="css/vendor.css">
   <link rel="stylesheet" href="css/main.css">
   <title>Oscar Hartmann</title>
@@ -113,14 +114,12 @@
         </g>
     </svg>
   </div>
-  <div class="introduction__video-wrapper">
-      <video preload="auto" autoplay muted loop playsinline>
-          <source src="video/poster-small.webm" type="video/webm" media="min-width: 1440px">
-          <source src="video/poster-small.mp4" type="video/mp4" media="min-width: 1440px">
-          <source src="video/poster.webm" type="video/webm">
-          <source src="video/poster.mp4" type="video/mp4">
-      </video>
-  </div>
+    <video class="introduction__video" preload="auto" poster="img/poster.jpg" autoplay muted loop playsinline>
+        <source src="video/poster-small.webm" type="video/webm" media="min-width: 1440px">
+        <source src="video/poster-small.mp4" type="video/mp4" media="min-width: 1440px">
+        <source src="video/poster.webm" type="video/webm">
+        <source src="video/poster.mp4" type="video/mp4">
+    </video>
   <span class="next-screen"></span>
 </section>
 

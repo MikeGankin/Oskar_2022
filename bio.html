@@ -23,8 +23,14 @@
 <body class="body">
   <header class="header">
   <nav class="menu container">
-    <a class="backwards-btn" href="index.html">
+    <a class="backwards-btn" href="index.html" ontouchstart>
     <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 471.2 471.2" style="enable-background:new 0 0 471.2 471.2;" xml:space="preserve">
+        <linearGradient id="gradient">
+            <stop offset="0%" stop-color="#FF1C42"></stop>
+            <stop offset="40%" stop-color="#FF4534"></stop>
+            <stop offset="60%" stop-color="#FF7622"></stop>
+            <stop offset="100%" stop-color="#FFB80A"></stop>
+        </linearGradient>
         <g>
             <path d="M396.7,0H74.5C33.4,0,0,33.4,0,74.5v322.2c0,41.1,33.4,74.5,74.5,74.5h322.2c41.1,0,74.5-33.4,74.5-74.5V74.5
                 C471.2,33.5,437.7,0,396.7,0z M444.2,396.7c0,26.2-21.3,47.5-47.5,47.5H74.5c-26.2,0-47.5-21.3-47.5-47.5V74.5
@@ -35,7 +41,7 @@
     </svg>
 </a>
     <a class="menu__link blog-link hidden" href="blog.html">Блог</a>
-    <button class="menu__lang-btn">
+    <button class="menu__lang-btn" ontouchstart>
       <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
         <rect width="48" height="48" fill="white" fill-opacity="0.01"/>
         <path fill-rule="evenodd" clip-rule="evenodd" d="M24 44C35.0457 44 44 35.0457 44 24C44 12.9543 35.0457 4 24 4C12.9543 4 4 12.9543 4 24C4 35.0457 12.9543 44 24 44Z" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -57,13 +63,13 @@
             <a>EN</a>
         </li>
     </ul>
-    <button class="menu__btn btn">
+    <button class="menu__btn btn" ontouchstart>
         <span class="btn__line btn__line--1"></span>
         <span class="btn__line btn__line--2"></span>
         <span class="btn__line btn__line--3"></span>
     </button>
   </nav>
-  <div class="navigation">
+  <div class="navigation container">
     <ul class="navigation__list">
         <li class="navigation__item">
             <a href="#">youtube канал</a>
@@ -119,12 +125,12 @@
             </p>
         </div>
       </article>
-      <div class="article-nav" data-scroll-section>
-        <div class="article-nav__next hidden">
+      <div class="article-nav no-prew" data-scroll-section>
+        <div class="article-nav__prew dsp-n">
           <p>Следующая история</p>
           <a href="first-steps.html">Первые шаги в бизнесе</a>
         </div>
-        <div class="article-nav__prew">
+        <div class="article-nav__next al-c">
           <p>Следующая история</p>
           <a href="first-steps.html">Первые шаги в бизнесе</a>
         </div>

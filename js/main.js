@@ -165,12 +165,18 @@ const menuAnimation = () => {
   if (menu.classList.contains('open')) {
     burgerToCross();
     menuOpen();
+
+    if (menuLangList.classList.contains('open')) {
+      langToggleClose();
+      menuLangList.classList.remove('open');
+    }
+
     document.body.classList.add('no-scroll');
   } else {
     menuClose();
     document.body.classList.remove('no-scroll');
   }
-}; // Функция открытия меню языков
+}; // Функция открытия меню языков на мобильных девайсах
 
 
 const langToggleOpen = () => {
@@ -181,7 +187,7 @@ const langToggleOpen = () => {
     stagger: 0.1,
     opacity: 1
   }, '+=0.1');
-}; // Функция закрытия меню языков
+}; // Функция закрытия меню языков на мобильных девайсах
 
 
 const langToggleClose = () => {
@@ -197,7 +203,7 @@ const langToggleClose = () => {
   }, {
     scaleX: 0
   }, '+=0.1');
-}; // Функция анимации меню языков
+}; // Функция анимации меню языков на мобильных девайсах
 
 
 const langMenuAnimation = () => {
@@ -208,7 +214,7 @@ const langMenuAnimation = () => {
   } else {
     langToggleClose();
   }
-}; // Функция закрытия меню языков при скроле
+}; // Функция закрытия меню языков при скроле на мобильных девайсах
 
 
 const langToggleScrollClose = () => {
@@ -9635,7 +9641,8 @@ const burger = document.querySelector('.menu__btn');
 const scrollUp = document.querySelector('.scroll-up');
 const footer = document.querySelector('.footer');
 const langToggler = document.querySelector('.menu__lang-btn');
-const langIndicator = langToggler.querySelector('span'); // Конструкторы
+const langIndicator = langToggler.querySelector('span');
+const mobileDeviceDetector = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent); // Конструкторы
 // Управление скроллом
 
 const scroll = new locomotive_scroll__WEBPACK_IMPORTED_MODULE_0__["default"]({
@@ -9677,7 +9684,7 @@ const vh = () => {
     }
   };
 
-  if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+  if (mobileDeviceDetector) {
     handleResize();
   }
 };
@@ -9707,7 +9714,11 @@ const langIndicatorToggler = () => {
 langIndicatorToggler(); //События
 
 burger.addEventListener('click', _functions_menu_animation__WEBPACK_IMPORTED_MODULE_1__.debouncedMenuAnimation);
-langToggler.addEventListener('click', _functions_menu_animation__WEBPACK_IMPORTED_MODULE_1__.debouncedLangMenuAnimation);
+langToggler.addEventListener('click', () => {
+  if (mobileDeviceDetector && window.innerWidth < 1200) {
+    (0,_functions_menu_animation__WEBPACK_IMPORTED_MODULE_1__.debouncedLangMenuAnimation)();
+  }
+});
 scrollUp.addEventListener('click', scrollUpper);
 window.addEventListener('load', _functions_banner_animation__WEBPACK_IMPORTED_MODULE_2__.bannerAnimation);
 window.addEventListener('scroll', _functions_menu_animation__WEBPACK_IMPORTED_MODULE_1__.langToggleScrollClose);
@@ -9715,4 +9726,3 @@ window.addEventListener('scroll', _functions_menu_animation__WEBPACK_IMPORTED_MO
 
 /******/ })()
 ;
-//# sourceMappingURL=main.js.map

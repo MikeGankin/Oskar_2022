@@ -1780,7 +1780,7 @@ button {
 .introduction__video {
   position: absolute;
   top: 50%;
-  left: 50%;
+  left: 0;
   min-width: 100%;
   min-height: 100%;
   -webkit-transform: translate(-50%, -50%);
@@ -1825,9 +1825,8 @@ button {
   .introduction__content {
     top: 70px;
   }
-  .introduction__video-wrapper {
-    top: 70px;
-    height: calc(100% - 70px);
+  .introduction__video {
+    left: 50%;
   }
 }
 @media (min-width: 1200px) {

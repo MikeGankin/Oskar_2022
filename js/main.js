@@ -160,8 +160,8 @@ const menuClose = () => {
 
 
 const disableScroll = () => {
-  let pagePosition = window.screenY;
-  document.body.classList.add('no-scroll');
+  let pagePosition = window.scrollY;
+  document.body.classList.add('disable-scroll');
   document.body.dataset.position = pagePosition;
   document.body.style.top = -pagePosition + 'px';
 }; // Функция включения скрола
@@ -170,7 +170,7 @@ const disableScroll = () => {
 const enableScroll = () => {
   let pagePosition = parseInt(document.body.dataset.position, 10);
   document.body.style.top = 'auto';
-  document.body.classList.remove('no-scroll');
+  document.body.classList.remove('disable-scroll');
   window.scroll({
     top: pagePosition,
     left: 0
@@ -188,14 +188,16 @@ const menuAnimation = () => {
     menuLangList.classList.remove('open');
   }
 
- if(menu.classList.contains('open')) {
+  if (menu.classList.contains('open')) {
     if (mobileDeviceDetector) {
       disableScroll();
     }
+
     burgerToCross();
     menuOpen();
   } else {
     menuClose();
+
     if (mobileDeviceDetector) {
       enableScroll();
     }

@@ -187,7 +187,7 @@ button {
   transform: scale(0.9);
 }
 
-.no-scroll {
+.disable-scroll {
   position: relative;
   overflow: hidden;
   height: 100vh;
@@ -701,12 +701,10 @@ button {
 
 .navigation__wrapper {
   position: relative;
-  top: 70px;
+  top: 0;
   left: 0;
-  padding-top: 5%;
-  padding-bottom: 5%;
   width: 100%;
-  height: calc(100% - 70px);
+  height: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1290,7 +1288,7 @@ button {
   flex-direction: column;
   -webkit-box-pack: end;
   -ms-flex-pack: end;
-  justify-content: end;
+  justify-content: flex-end;
 }
 
 .content__header-wrapper h2 {

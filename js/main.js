@@ -207,7 +207,8 @@ const menuAnimation = () => {
 
 const langToggleOpen = () => {
   langTl.to(menuLangList, {
-    scaleX: 1
+    scaleX: 1,
+	opacity: 1
   });
   langTl.to(createReversedArray(languages), {
     stagger: 0.1,

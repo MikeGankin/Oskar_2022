@@ -9668,7 +9668,8 @@ const scrollUp = document.querySelector('.scroll-up');
 const footer = document.querySelector('.footer');
 const langToggler = document.querySelector('.menu__lang-btn');
 const langIndicator = langToggler.querySelector('span');
-const mobileDeviceDetector = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent); // Конструкторы
+const mobileDeviceDetector = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+const isMac = /(Mac)/i.test(navigator.userAgent); // Конструкторы
 // Управление скроллом
 
 const scroll = new locomotive_scroll__WEBPACK_IMPORTED_MODULE_0__["default"]({
@@ -9696,6 +9697,23 @@ const scrollUpObserver = new IntersectionObserver(entries => {
   threshold: 0.5
 });
 scrollUpObserver.observe(footer); //Функции
+// Функция очистки якоря
+
+const fontRenderingFixer = () => {
+  const blogLink = document.querySelector('.blog-link');
+
+  if (isMac) {
+    blogLink.style.lineHeight = 'unset';
+  }
+};
+
+fontRenderingFixer(); // Функция очистки якоря
+
+const AnchorCleaner = () => {
+  history.pushState("", document.title, window.location.pathname);
+};
+
+AnchorCleaner(); // Функция хака VH
 
 const vh = () => {
   let windowInnerWidth = 0;

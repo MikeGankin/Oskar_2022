@@ -4,7 +4,7 @@
           <stop offset="40%" stop-color="#FF4534" />
           <stop offset="60%" stop-color="#FF7622" />
           <stop offset="100%" stop-color="#FFB80A" />
-        </linearGradient>
+    </linearGradient>
     <clipPath id="a">
         <path d="M0 0h227.096v227.096H0z"/>
     </clipPath>

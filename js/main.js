@@ -9670,7 +9670,7 @@ const footer = document.querySelector('.footer');
 const langToggler = document.querySelector('.menu__lang-btn');
 const langIndicator = langToggler.querySelector('span');
 const mobileDeviceDetector = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-const isMac = /(Mac)/i.test(navigator.userAgent); // Конструкторы
+const isMac = /Mac|iPad|iPhone/i.test(navigator.userAgent); // Конструкторы
 // Управление скроллом
 
 const scroll = new locomotive_scroll__WEBPACK_IMPORTED_MODULE_0__["default"]({
@@ -9771,3 +9771,4 @@ window.addEventListener('scroll', _functions_menu_animation__WEBPACK_IMPORTED_MO
 
 /******/ })()
 ;
+//# sourceMappingURL=main.js.map

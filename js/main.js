@@ -121,7 +121,7 @@ const menuOpen = () => {
     stagger: 0.1,
     opacity: 1,
     x: 0
-  }, '+=0.1'); // Анимация контактов
+  }); // Анимация контактов
 
   menuTl.to(menuCommunication, {
     stagger: 0.1,
@@ -155,7 +155,7 @@ const menuClose = () => {
     scaleY: 1
   }, {
     scaleY: 0
-  }, '+=0.2');
+  });
 }; // Функция отключения скрола
 
 
@@ -9665,26 +9665,35 @@ __webpack_require__.r(__webpack_exports__);
  //Переменные
 
 const burger = document.querySelector('.menu__btn');
-const scrollUp = document.querySelector('.scroll-up');
 const footer = document.querySelector('.footer');
 const langToggler = document.querySelector('.menu__lang-btn');
 const langIndicator = langToggler.querySelector('span');
-const mobileDeviceDetector = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-const isMac = /Mac|iPad|iPhone/i.test(navigator.userAgent); // Конструкторы
+const scrollUp = document.querySelector('.scroll-up');
+const mobileDeviceDetector = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent); // Конструкторы
 // Управление скроллом
 
-const scroll = new locomotive_scroll__WEBPACK_IMPORTED_MODULE_0__["default"]({
-  el: document.querySelector('[data-scroll-container]'),
-  smooth: true,
-  tablet: {
-    smooth: false
-  },
-  smartphone: {
-    smooth: false
-  }
-}); // Обновление скрола при изменении высоты элементов на странице
+const scrollManager = () => {
+  if (!mobileDeviceDetector) {
+    const scroll = new locomotive_scroll__WEBPACK_IMPORTED_MODULE_0__["default"]({
+      el: document.querySelector('[data-scroll-container]'),
+      smooth: true,
+      tablet: {
+        smooth: false
+      },
+      smartphone: {
+        smooth: false
+      }
+    }); // Обновление скрола при изменении высоты элементов на странице
 
-new ResizeObserver(() => scroll.update()).observe(document.querySelector("[data-scroll-container]")); // Слежка за пересечением вьюпорта для кнопки вверх
+    new ResizeObserver(() => scroll.update()).observe(document.querySelector("[data-scroll-container]"));
+    scrollUp.addEventListener('click', () => {
+      scrollUp.classList.remove('scroll-up--active');
+      scroll.scrollTo('top');
+    });
+  }
+};
+
+scrollManager(); // Слежка за пересечением вьюпорта для кнопки вверх
 
 const scrollUpObserver = new IntersectionObserver(entries => {
   entries.forEach(entry => {
@@ -9699,16 +9708,6 @@ const scrollUpObserver = new IntersectionObserver(entries => {
 });
 scrollUpObserver.observe(footer); //Функции
 // Функция очистки якоря
-
-const fontRenderingFixer = () => {
-  const blogLink = document.querySelector('.blog-link');
-
-  if (isMac) {
-    blogLink.style.lineHeight = 'unset';
-  }
-};
-
-fontRenderingFixer(); // Функция очистки якоря
 
 const AnchorCleaner = () => {
   history.pushState("", document.title, window.location.pathname);
@@ -9734,13 +9733,7 @@ const vh = () => {
   }
 };
 
-vh(); // Функция скрола страницы вверх
-
-const scrollUpper = () => {
-  scrollUp.classList.remove('scroll-up--active');
-  scroll.scrollTo('top');
-}; // Функция индикации текущего языка
-
+vh(); // Функция индикации текущего языка
 
 const langIndicatorToggler = () => {
   if (document.documentElement.lang === 'ru') {
@@ -9764,11 +9757,9 @@ langToggler.addEventListener('click', () => {
     (0,_functions_menu_animation__WEBPACK_IMPORTED_MODULE_1__.debouncedLangMenuAnimation)();
   }
 });
-scrollUp.addEventListener('click', scrollUpper);
 window.addEventListener('DOMContentLoaded', _functions_banner_animation__WEBPACK_IMPORTED_MODULE_2__.bannerAnimation);
 window.addEventListener('scroll', _functions_menu_animation__WEBPACK_IMPORTED_MODULE_1__.langToggleScrollClose);
 })();
 
 /******/ })()
 ;
-//# sourceMappingURL=main.js.map

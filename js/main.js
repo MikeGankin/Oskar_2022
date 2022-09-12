@@ -111,23 +111,28 @@ const crossToBurger = () => {
 
 
 const menuOpen = () => {
-  burgerToCross(); // Анимация задника меню
+  burgerToCross();
+  CustomEase.create('cubic', '0.250, 0.460, 0.450, 0.940'); // Анимация задника меню
 
   menuTl.to(menuContent, {
-    scaleY: 1
+    scaleY: 1,
+    duration: 0.1,
+    ease: "cubic"
   }); // Анимация ссылок
 
   menuTl.to(menuItems, {
     stagger: 0.1,
     opacity: 1,
     x: 0,
-    duration: 1,
-    ease: "power1.in"
+    duration: 0.1,
+    ease: "cubic"
   }); // Анимация контактов
 
   menuTl.to(menuCommunication, {
     stagger: 0.1,
-    opacity: 1
+    opacity: 1,
+    duration: 0.1,
+    ease: "cubic"
   });
 }; // Функция закрытия меню
 
@@ -137,26 +142,38 @@ const menuClose = () => {
 
   menuTl.fromTo(createReversedArray(menuCommunication), {
     stagger: 0.1,
-    opacity: 1
+    opacity: 1,
+    duration: 0.1,
+    ease: "cubic"
   }, {
     stagger: 0.1,
-    opacity: 0
+    opacity: 0,
+    duration: 0.1,
+    ease: "cubic"
   }); // Анимация ссылок
 
   menuTl.fromTo(createReversedArray(menuItems), {
     stagger: 0.1,
     opacity: 1,
-    x: 0
+    x: 0,
+    duration: 0.1,
+    ease: "cubic"
   }, {
     stagger: 0.1,
     opacity: 0,
-    x: 100
+    x: 100,
+    duration: 0.1,
+    ease: "cubic"
   }); // Анимация задника меню
 
   menuTl.fromTo(menuContent, {
-    scaleY: 1
+    scaleY: 1,
+    duration: 0.1,
+    ease: "cubic"
   }, {
-    scaleY: 0
+    scaleY: 0,
+    duration: 0.1,
+    ease: "cubic"
   });
 }; // Функция отключения скрола
 

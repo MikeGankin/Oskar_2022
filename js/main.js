@@ -9760,7 +9760,7 @@ langToggler.addEventListener('click', () => {
 window.addEventListener('load', () => {
   setTimeout(() => {
     (0,_functions_banner_animation__WEBPACK_IMPORTED_MODULE_2__.bannerAnimation)();
-  }, 100);
+  }, 200);
 });
 window.addEventListener('scroll', _functions_menu_animation__WEBPACK_IMPORTED_MODULE_1__.langToggleScrollClose);
 })();

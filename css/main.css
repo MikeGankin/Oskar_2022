@@ -211,6 +211,9 @@ button {
   fill: #ffffff;
   width: 30px;
   height: 30px;
+  -webkit-transition: fill 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  -o-transition: fill 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition: fill 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .backwards-btn:active {
@@ -363,10 +366,8 @@ button {
   .site-link:hover::after {
     opacity: 1;
   }
-  .backwards-btn:hover {
-    -webkit-transform: scale(1.1);
-    -ms-transform: scale(1.1);
-    transform: scale(1.1);
+  .backwards-btn:hover svg {
+    fill: #ff602c;
   }
 }
 @-webkit-keyframes fadeIn-1 {
@@ -487,13 +488,12 @@ button {
   -ms-flex-align: center;
   align-items: center;
   list-style: none;
-  width: 60%;
+  width: 62%;
   height: 60px;
   margin: 0;
   padding: 10px 5% 5px 5%;
   font-family: "Bebas Neue Cyrillic";
   font-size: calc(14px + 6 * ((100vw - 320px) / 1600));
-  gap: 5px;
   position: fixed;
   bottom: 0;
   left: 0;
@@ -916,6 +916,7 @@ button {
   -webkit-background-clip: text;
   background-clip: text;
   cursor: none;
+  margin-right: auto;
 }
 
 .blog-link:active {
@@ -942,11 +943,13 @@ button {
   }
   .menu__lang-list {
     top: 0;
-    width: 80%;
+    width: 78%;
     -webkit-box-pack: start;
     -ms-flex-pack: start;
     justify-content: flex-start;
-    gap: 20px;
+  }
+  .menu__lang-list li {
+    margin-right: 25px;
   }
   .blog-link {
     margin-right: auto;
@@ -1490,7 +1493,6 @@ button {
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
-  height: clamp(20px, 5vh, 47px);
   font-family: "Eastman";
   font-size: calc(16px + 4 * ((100vw - 320px) / 1600));
   font-weight: 400;
@@ -1704,6 +1706,9 @@ button {
   }
   .content__header-wrapper {
     width: 40%;
+  }
+  .more-btn {
+    height: 47px;
   }
 }
 @media (min-width: 1440px) {
@@ -1955,9 +1960,9 @@ button {
 }
 
 .introduction__banner {
-  -webkit-transition: all 0.1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  -o-transition: all 0.1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  transition: all 0.1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  -webkit-transition: opacity transform 0.1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  -o-transition: opacity transform 0.1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition: opacity transform 0.1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .next-screen {
@@ -2384,7 +2389,6 @@ button {
   -ms-flex-pack: center;
   justify-content: center;
   position: relative;
-  gap: 20px;
   width: 90%;
   margin: 10% auto 10% auto;
 }
@@ -2444,6 +2448,7 @@ button {
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   justify-content: center;
+  margin-right: 10px;
 }
 
 .article-nav__next {
@@ -2460,6 +2465,7 @@ button {
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   justify-content: center;
+  margin-left: 10px;
 }
 
 .hidden {
@@ -2481,7 +2487,6 @@ button {
     -webkit-box-align: start;
     -ms-flex-align: start;
     align-items: flex-start;
-    gap: 200px;
   }
   .article-nav::before {
     display: block;
@@ -2491,6 +2496,7 @@ button {
     -webkit-box-align: start;
     -ms-flex-align: start;
     align-items: flex-start;
+    margin-left: 100px;
   }
   .article-nav__next a {
     text-align: left;
@@ -2503,6 +2509,7 @@ button {
     -webkit-box-align: end;
     -ms-flex-align: end;
     align-items: flex-end;
+    margin-right: 100px;
   }
   .article-nav__prew a {
     text-align: right;

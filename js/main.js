@@ -9711,9 +9711,8 @@ scrollUpObserver.observe(footer); //Функции
 
 const AnchorCleaner = () => {
   history.pushState("", document.title, window.location.pathname);
-};
+}; // Функция хака VH
 
-AnchorCleaner(); // Функция хака VH
 
 const vh = () => {
   let windowInnerWidth = 0;
@@ -9761,9 +9760,11 @@ window.addEventListener('load', () => {
   setTimeout(() => {
     (0,_functions_banner_animation__WEBPACK_IMPORTED_MODULE_2__.bannerAnimation)();
   }, 200);
+  AnchorCleaner();
 });
 window.addEventListener('scroll', _functions_menu_animation__WEBPACK_IMPORTED_MODULE_1__.langToggleScrollClose);
 })();
 
 /******/ })()
 ;
+//# sourceMappingURL=main.js.map

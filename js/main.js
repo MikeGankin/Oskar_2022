@@ -120,7 +120,9 @@ const menuOpen = () => {
   menuTl.to(menuItems, {
     stagger: 0.1,
     opacity: 1,
-    x: 0
+    x: 0,
+    duration: 1,
+    ease: "power1.in"
   }); // Анимация контактов
 
   menuTl.to(menuCommunication, {
@@ -9690,6 +9692,11 @@ const scrollManager = () => {
       scrollUp.classList.remove('scroll-up--active');
       scroll.scrollTo('top');
     });
+  } else {
+    scrollUp.addEventListener('click', () => {
+      scrollUp.classList.remove('scroll-up--active');
+      window.scrollTo(0, 0);
+    });
   }
 };
 
@@ -9707,12 +9714,7 @@ const scrollUpObserver = new IntersectionObserver(entries => {
   threshold: 0.5
 });
 scrollUpObserver.observe(footer); //Функции
-// Функция очистки якоря
-
-const AnchorCleaner = () => {
-  history.pushState("", document.title, window.location.pathname);
-}; // Функция хака VH
-
+// Функция хака VH
 
 const vh = () => {
   let windowInnerWidth = 0;
@@ -9759,12 +9761,10 @@ langToggler.addEventListener('click', () => {
 window.addEventListener('load', () => {
   setTimeout(() => {
     (0,_functions_banner_animation__WEBPACK_IMPORTED_MODULE_2__.bannerAnimation)();
-  }, 200);
-  AnchorCleaner();
+  }, 100);
 });
 window.addEventListener('scroll', _functions_menu_animation__WEBPACK_IMPORTED_MODULE_1__.langToggleScrollClose);
 })();
 
 /******/ })()
 ;
-//# sourceMappingURL=main.js.map

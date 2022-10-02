@@ -1670,9 +1670,6 @@ button {
     width: 100%;
     border: 2px solid #0a0a0a;
     opacity: 1;
-    -webkit-transition: opacity 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    -o-transition: opacity 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    transition: opacity 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   }
   .more-btn::after {
     content: "";
@@ -1687,9 +1684,6 @@ button {
     height: inherit;
     width: 100%;
     opacity: 0;
-    -webkit-transition: opacity 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    -o-transition: opacity 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    transition: opacity 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     border: 2px solid transparent;
     -o-border-image: -o-linear-gradient(left, #ff1c42 0%, #ff4534 20%, #ff7622 40%, #ffb80a 100%);
     border-image: -webkit-gradient(linear, left top, right top, from(#ff1c42), color-stop(20%, #ff4534), color-stop(40%, #ff7622), to(#ffb80a));

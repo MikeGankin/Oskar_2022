@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="ru" class="page">
 
 <head>
   <meta charset="UTF-8">
@@ -14,9 +14,12 @@
   <link rel="preload" href="fonts/Eastman-Bold.woff2" as="font" crossorigin>
   <link rel="preload" href="fonts/Eastman-Regular.woff2" as="font" crossorigin>
   <link rel="preload" href="fonts/BebasNeueCyrillic.woff2" as="font" crossorigin>
+  <link rel="preload" href="fonts/Eastman-Bold.woff" as="font" crossorigin>
+  <link rel="preload" href="fonts/Eastman-Regular.woff" as="font" crossorigin>
+  <link rel="preload" href="fonts/BebasNeueCyrillic.woff" as="font" crossorigin>
   <link rel="stylesheet" href="css/vendor.css">
   <link rel="stylesheet" href="css/main.css">
-  <title>Oscar Hartmann</title>
+  <title>Оскар Хартманн</title>
 </head>
 
   <body class="body">
@@ -40,13 +43,13 @@
         </button>
         <ul class="menu__lang-list lang-menu">
             <li class="menu__lang-item en">
-                <a>RU</a>
+                <a>EN</a>
             </li>
             <li class="menu__lang-item de">
                 <a>DE</a>
             </li>
             <li class="menu__lang-item rus">
-                <a>EN</a>
+                <a>RU</a>
             </li>
         </ul>
       <button class="menu__btn btn" ontouchstart>
@@ -76,10 +79,12 @@
     </li>
     </ul>
     <div class="navigation__contacts">
-      <div class='menu__communication communication'>
-        <a class="communication__phone" href="tel:+79168457228">8 (916) 845-72-28</a>
-        <a class="communication__mail" href="mailto:mail@htmlacademy.ru&body=привет?subject=вопрос">VLADIMIR@HARTMANN.HOLDINGS</a>
-      </div>
+      <address>
+        <div class='menu__communication communication'>
+          <a class="communication__phone" href="tel:+79168457228">8 (916) 845-72-28</a>
+          <a class="communication__mail" href="mailto:vladimir@hartmann.holdings">vladimir@hartmann.holdings</a>
+        </div>
+      </address>
     </div>
     </div>
   </div>
@@ -206,8 +211,8 @@
     </div>
     <div class="lead-article__img">
         <picture>
-          <source srcset="img/invest-big.jpg" media="(min-width: 767px)">
-          <img class="content-img content-img-top" src="img/invest-small.jpg">
+          <source srcset="img/investment-big.jpg" media="(min-width: 767px)">
+          <img class="content-img content-img-top" src="img/investment-small.jpg">
         </picture>
     </div>
 </section>
@@ -427,10 +432,12 @@
       <footer class="footer" data-scroll data-scroll-section>
   <div class="footer__content" id="footer">
     <h2>СОТРУДНИЧЕСТВО, МЕРОПРИЯТИЯ, КОЛЛАБОРАЦИИ:</h2>
-    <p>владимир рощин</p>
+    <p>Владимир Рощин</p>
     <div class='footer__communication'>
-      <a href="tel:+79168457228">8 (916) 845-72-28</a>
-      <a href="">VLADIMIR@HARTMANN.HOLDINGS</a>
+      <address>
+        <a href="tel:+79168457228">8 (916) 845-72-28</a>
+        <a href="mailto:vladimir@hartmann.holdings">vladimir@hartmann.holdings</a>
+      </address>
     </div>
     <ul class="footer__socials socials">
       <li class='socials__item'>

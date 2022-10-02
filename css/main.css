@@ -1709,7 +1709,7 @@ button {
     grid-template-columns: repeat(3, 1fr);
   }
   .content {
-    padding: calc(3% + 60px) 30px 3% 30px;
+    padding: 3% 30px 3% 30px;
   }
   .posts {
     padding-top: calc(3% + 60px);

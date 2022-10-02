@@ -57,6 +57,11 @@ body {
   object-position: top;
 }
 
+.content-img-bottom {
+  -o-object-position: bottom;
+  object-position: bottom;
+}
+
 h1 {
   font-family: "Bebas Neue Cyrillic";
   font-size: calc(85px + 315 * ((100vw - 320px) / 1600));

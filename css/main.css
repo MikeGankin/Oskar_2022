@@ -1922,6 +1922,7 @@ button {
   height: 100%;
   overflow: hidden;
   background-image: url("../img/poster.jpg");
+  background-image: url("../img/poster-mob.gif");
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;

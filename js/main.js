@@ -9,14 +9,12 @@
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "bannerAnimation": () => (/* binding */ bannerAnimation)
-/* harmony export */ });
 /* harmony import */ var gsap__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! gsap */ "./node_modules/gsap/index.js");
 /* harmony import */ var gsap_CustomEase__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! gsap/CustomEase */ "./node_modules/gsap/CustomEase.js");
 
 
 gsap__WEBPACK_IMPORTED_MODULE_0__.gsap.registerPlugin(gsap_CustomEase__WEBPACK_IMPORTED_MODULE_1__.CustomEase);
+
 const bannerAnimation = () => {
   let oskar = document.querySelector('.oskar');
   let hartmann = document.querySelector('.hartmann');
@@ -42,6 +40,8 @@ const bannerAnimation = () => {
     ease: 'cubic'
   });
 };
+
+bannerAnimation();
 
 /***/ }),
 
@@ -11732,13 +11732,9 @@ langToggler.addEventListener('click', () => {
     (0,_functions_menu_animation__WEBPACK_IMPORTED_MODULE_1__.debouncedLangMenuAnimation)();
   }
 });
-window.addEventListener('load', () => {
-  let video = document.querySelector('.introduction__video');
-  video.play();
-  (0,_functions_banner_animation__WEBPACK_IMPORTED_MODULE_2__.bannerAnimation)();
-});
 window.addEventListener('scroll', _functions_menu_animation__WEBPACK_IMPORTED_MODULE_1__.langToggleScrollClose);
 })();
 
 /******/ })()
 ;
+//# sourceMappingURL=main.js.map

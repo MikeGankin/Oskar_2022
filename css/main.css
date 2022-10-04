@@ -1926,18 +1926,14 @@ button {
   width: 100%;
   height: 100%;
   overflow: hidden;
-  background-image: url("../img/poster.jpg");
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: cover;
 }
 
 .introduction__video {
   position: absolute;
   top: 50%;
-  left: 0;
-  min-width: 100%;
-  min-height: 100%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
   -webkit-transform: translate(-50%, -50%);
   -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
@@ -2738,3 +2734,4 @@ button {
     fill: #c4302b;
   }
 }
+/*# sourceMappingURL=main.css.map */
